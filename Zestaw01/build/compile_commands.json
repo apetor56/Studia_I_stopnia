@@ -1,0 +1,27 @@
+[
+{
+  "directory": "C:/Users/Lukasz Tenerowicz/Desktop/ASD2/Zestaw01/build",
+  "command": "C:\\PROGRA~1\\MINGW-~1\\X86_64~1.0-P\\mingw64\\bin\\X86_64~2.EXE  @CMakeFiles/SetSimple.dir/includes_CXX.rsp -g -std=c++17 -Wall -pedantic -I./include -o CMakeFiles\\SetSimple.dir\\src\\SetSimple.cpp.obj -c \"C:\\Users\\Lukasz Tenerowicz\\Desktop\\ASD2\\Zestaw01\\src\\SetSimple.cpp\"",
+  "file": "C:/Users/Lukasz Tenerowicz/Desktop/ASD2/Zestaw01/src/SetSimple.cpp"
+},
+{
+  "directory": "C:/Users/Lukasz Tenerowicz/Desktop/ASD2/Zestaw01/build",
+  "command": "C:\\PROGRA~1\\MINGW-~1\\X86_64~1.0-P\\mingw64\\bin\\X86_64~2.EXE  @CMakeFiles/testA.dir/includes_CXX.rsp -g -std=c++17 -Wall -pedantic -I./include -o CMakeFiles\\testA.dir\\src\\testA.cpp.obj -c \"C:\\Users\\Lukasz Tenerowicz\\Desktop\\ASD2\\Zestaw01\\src\\testA.cpp\"",
+  "file": "C:/Users/Lukasz Tenerowicz/Desktop/ASD2/Zestaw01/src/testA.cpp"
+},
+{
+  "directory": "C:/Users/Lukasz Tenerowicz/Desktop/ASD2/Zestaw01/build",
+  "command": "C:\\PROGRA~1\\MINGW-~1\\X86_64~1.0-P\\mingw64\\bin\\X86_64~2.EXE  @CMakeFiles/SetLinked.dir/includes_CXX.rsp -g -std=c++17 -Wall -pedantic -I./include -o CMakeFiles\\SetLinked.dir\\src\\SetLinked.cpp.obj -c \"C:\\Users\\Lukasz Tenerowicz\\Desktop\\ASD2\\Zestaw01\\src\\SetLinked.cpp\"",
+  "file": "C:/Users/Lukasz Tenerowicz/Desktop/ASD2/Zestaw01/src/SetLinked.cpp"
+},
+{
+  "directory": "C:/Users/Lukasz Tenerowicz/Desktop/ASD2/Zestaw01/build",
+  "command": "C:\\PROGRA~1\\MINGW-~1\\X86_64~1.0-P\\mingw64\\bin\\X86_64~2.EXE  @CMakeFiles/testB.dir/includes_CXX.rsp -g -std=c++17 -Wall -pedantic -I./include -o CMakeFiles\\testB.dir\\src\\testB.cpp.obj -c \"C:\\Users\\Lukasz Tenerowicz\\Desktop\\ASD2\\Zestaw01\\src\\testB.cpp\"",
+  "file": "C:/Users/Lukasz Tenerowicz/Desktop/ASD2/Zestaw01/src/testB.cpp"
+},
+{
+  "directory": "C:/Users/Lukasz Tenerowicz/Desktop/ASD2/Zestaw01/build",
+  "command": "C:\\PROGRA~1\\MINGW-~1\\X86_64~1.0-P\\mingw64\\bin\\X86_64~2.EXE  @CMakeFiles/DictonarySample.dir/includes_CXX.rsp -g -std=c++17 -Wall -pedantic -I./include -o CMakeFiles\\DictonarySample.dir\\src\\DictonarySample.cpp.obj -c \"C:\\Users\\Lukasz Tenerowicz\\Desktop\\ASD2\\Zestaw01\\src\\DictonarySample.cpp\"",
+  "file": "C:/Users/Lukasz Tenerowicz/Desktop/ASD2/Zestaw01/src/DictonarySample.cpp"
+}
+]
