@@ -1,9 +1,0 @@
-C:/Users/Lukasz Tenerowicz/Desktop/ASD2/Zestaw01/build/CMakeFiles/SetSimple.dir
-C:/Users/Lukasz Tenerowicz/Desktop/ASD2/Zestaw01/build/CMakeFiles/testA.dir
-C:/Users/Lukasz Tenerowicz/Desktop/ASD2/Zestaw01/build/CMakeFiles/SetLinked.dir
-C:/Users/Lukasz Tenerowicz/Desktop/ASD2/Zestaw01/build/CMakeFiles/testB.dir
-C:/Users/Lukasz Tenerowicz/Desktop/ASD2/Zestaw01/build/CMakeFiles/DictonarySample.dir
-C:/Users/Lukasz Tenerowicz/Desktop/ASD2/Zestaw01/build/CMakeFiles/package.dir
-C:/Users/Lukasz Tenerowicz/Desktop/ASD2/Zestaw01/build/CMakeFiles/package_source.dir
-C:/Users/Lukasz Tenerowicz/Desktop/ASD2/Zestaw01/build/CMakeFiles/edit_cache.dir
-C:/Users/Lukasz Tenerowicz/Desktop/ASD2/Zestaw01/build/CMakeFiles/rebuild_cache.dir
