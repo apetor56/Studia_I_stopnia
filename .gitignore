@@ -36,3 +36,5 @@
 
 # Executable directory
 **/out
+
+*.zip

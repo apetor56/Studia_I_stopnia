@@ -3,7 +3,6 @@
 #include "SetLinked.hpp"
 
 int main() {
-    SetLinked<int, 3> set_A;
     int size = 500;
     
     double *sum_of_measurements = new double[size]();
@@ -11,6 +10,7 @@ int main() {
     // std::cout.precision(8);
 
     for(int i = 0; i < 1000; i++) {
+        SetLinked<int, 3> set_A;
         for(int j = 1; j <= size; j++) {
             // start measurement
             auto start = std::chrono::high_resolution_clock::now();
