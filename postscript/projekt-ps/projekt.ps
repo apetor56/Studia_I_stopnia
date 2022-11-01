@@ -1,0 +1,194 @@
+/first_triangle {
+    /len exch def
+    /i 0 def
+
+    4 len mul 300 div setlinewidth
+
+    /rotate_tab [-60 -120 -120] def
+    gsave
+        3 {
+            /deg rotate_tab i get def
+            deg rotate
+            len 0 rlineto
+
+            /i i 1 add def
+        } repeat
+        stroke
+    grestore
+
+    /X 0 def
+    /Y 30 cos a mul -1 mul def
+    X Y moveto
+} def
+
+/rotated_triangle {
+    /len exch def
+    /i 0 def
+
+    /rotate_tab [-60 -120 -120] def
+    
+    gsave
+        /new_len len 2 div def
+        
+        -180 rotate
+        /i 0 def
+        3 {
+            /deg rotate_tab i get def
+            deg rotate
+            new_len 0 rlineto
+
+            /i i 1 add def
+        } repeat
+        fill
+    grestore
+} def
+
+/j 0 def
+/fractals {
+    2 dict begin
+        /a exch def
+        
+        j 0 eq {
+            a first_triangle
+            /j j 1 add def
+        } if
+
+        /seg exch def
+        a rotated_triangle
+ 
+        gsave
+            seg 0 gt {
+                /X a 4 div -1 mul def
+                X 0 rmoveto
+                seg 1 sub a 2 div fractals
+            } if 
+        grestore
+
+        gsave
+            seg 0 gt {
+                a 4 div 0 rmoveto
+                seg 1 sub a 2 div fractals
+            } if
+        grestore
+
+        gsave
+            seg 0 gt {
+                0 30 cos a mul 2 div rmoveto
+                seg 1 sub a 2 div fractals
+            } if
+        grestore
+    end
+} def
+
+/show_text {
+    /first_len exch def
+    /x_move 20 300 div first_len mul def
+    first_len x_move add -2 div 0 rmoveto
+
+    /adjust_font_size 34 300 div first_len mul def
+    /adjust_font_space 3 300 div first_len mul def
+
+    gsave
+        /scale_X 1.205 def
+        /scale_Y 1.22 def
+        /Hoefler-BoldItalic findfont
+        adjust_font_size scalefont
+        setfont
+
+        scale_X scale_Y scale
+        120 rotate
+        /text_tab [(+) (O) (L) (I) (M) (P) (I) (A) (D) (A) (  ) (M) (A) (T) (E) (M) (A) (T) (Y) (C) (Z) (N) (A) (+)] def
+        /text_tab_size 24 def
+        1 dict begin
+            /i 0 def
+
+            text_tab_size {
+                adjust_font_space 0 text_tab i get ashow
+                /i i 1 add def
+                -10.4 rotate
+            } repeat
+        end
+    grestore
+} def
+
+/hoops {
+    gsave
+        /first_len exch def
+        /y_move 30 cos first_len mul 60 first_len 300 div mul add -1 mul def
+        0 y_move moveto
+        stroke
+        
+        5 first_len mul 300 div setlinewidth
+        /scaled_radius 35 first_len mul 300 div def
+        0 y_move scaled_radius 0 360 arc 
+        stroke
+
+        /scale_tab [-1.5 0.8 -2.6 0.6] def
+        /index 0 def
+        2 {
+            /y_move y_move 5 first_len mul 300 div add def
+            /val1 scale_tab index get def
+            /val2 scale_tab index 1 add get def
+
+            val1 scaled_radius mul y_move val2 scaled_radius mul 0 360 arc
+            stroke
+
+            gsave
+                -1 1 scale
+                val1 scaled_radius mul y_move val2 scaled_radius mul 0 360 arc
+                stroke
+            grestore
+            
+            /index index 2 add def
+        } repeat
+    grestore
+} def
+
+/circles {
+    gsave
+        /first_len exch def
+        /width 8 first_len 300 div mul def 
+        width setlinewidth
+
+        /scale_X 0.93 def
+        /scale_Y 0.9 def
+        scale_X scale_Y scale
+        stroke
+
+        /X 0 def
+        /Y first_len 30 cos 2 mul div def
+        /radius Y 80 first_len mul 300 div add def
+        0 Y -1 mul radius 0 360 arc
+        stroke
+
+        width 2.5 div setlinewidth
+        /radius Y 80 first_len mul 300 div add width 1.2 mul add def
+        0 Y -1 mul radius 0 360 arc
+        stroke
+    grestore
+} def
+
+/show_logo {
+    gsave
+    0 0 moveto
+    /len exch def
+    /frac_seg exch def
+
+    frac_seg len fractals
+    len show_text
+    len hoops
+    len circles
+    grestore
+} def
+
+% 0.6 1 0.4 setrgbcolor clippath fill
+% 1 1 1 setrgbcolor 
+300 500 translate
+2 200 show_logo
+
+200 200 translate
+4 100 show_logo
+
+-350 -500 translate
+6 150 show_logo
+showpage
