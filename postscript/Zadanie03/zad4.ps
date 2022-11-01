@@ -1,0 +1,27 @@
+300 600 translate
+/i 0 def
+
+3 setlinewidth
+3 {
+    i 0 eq {
+        0 0 1 setrgbcolor
+        0 0 50 0 360 arc
+        stroke
+    } if
+
+    i 1 eq {
+        1 0 0 setrgbcolor
+        0 -20 70 0 360 arc
+        stroke
+    } if
+
+    i 1 eq {
+        0 1 0 setrgbcolor
+        0 -50 100 0 360 arc
+        stroke
+    } if
+    
+    /i i 1 add def
+} repeat
+
+showpage

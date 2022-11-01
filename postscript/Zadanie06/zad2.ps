@@ -1,0 +1,34 @@
+200 500 translate
+
+/square {
+    /a exch def
+    /len a 2 div def
+    /mlen a -1 mul def
+
+    /mod exch def
+
+    4 {
+        a 0 rlineto
+        -90 rotate
+    } repeat
+
+    gsave
+        3 setlinewidth
+        1 0 0 setrgbcolor
+        stroke
+    grestore
+
+    mod 1 eq {
+        0 a 10 sub moveto
+        0 0 0 setrgbcolor
+        eofill
+    } if
+} def
+
+0 0 moveto
+0 130 square
+
+-35 35 moveto
+1 200 square
+
+showpage

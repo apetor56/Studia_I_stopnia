@@ -1,0 +1,28 @@
+300 500 translate
+
+/circle {
+    /n exch def
+    /deg 360 n div def
+    /r 200 def
+    /i 1 def
+
+    0 0 moveto
+    gsave
+        n {
+            r 0 rlineto
+            0 0 r 0 deg arc
+            0 0 lineto
+
+            i 1 1 sethsbcolor
+            fill
+
+            deg rotate
+            /i i 1 n div sub def
+            0 0 moveto
+        } repeat    
+    grestore
+} def
+
+10000 circle
+
+showpage
