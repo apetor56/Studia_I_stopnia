@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/dropdown.css">
+  <script src="js/dropdown.js"></script>
+</head>
+
+<body>
+
+<header class="toptext">Computer graphics programming</header>
+
+<nav class="leftmenu">
+  <div class="nodropdown">
+    <a href="./index.html" class="nodropbtn" style="margin-top: 0px">Introduction</a>
+  </div>
+
+  <div class="dropdown">
+    <button onclick=myFunction("d1") class="dropbtn">Basics</button>
+    <div id="d1" class="dropdown-content">
+      <a href="#window">window</a>
+      <a href="./triangle.html">first triange</a>
+      <a href="#shaders">shaders</a>
+      <a href="./textures.html">textures</a>
+      <a href="#coordinates">coordinate spaces</a>
+    </div>
+
+    <button onclick=myFunction("d2") class="dropbtn">Lighting</button>
+    <div id="d2" class="dropdown-content">
+      <a href="./colors.html">colors</a>
+      <a href="#basiclighting">basic lighting</a>
+      <a href="#materials">materials</a>
+      <a href="#lightingmaps">lighting maps</a>
+    </div>
+
+    <button onclick=myFunction("d3") class="dropbtn">Model Loading</button>
+    <div id="d3" class="dropdown-content">
+      <a href="#assimp">assimp</a>
+      <a href="#mesh">mesh</a>
+      <a href="#model">model</a>
+    </div>
+
+    <button onclick=myFunction("d4") class="dropbtn">Other APIs</button>
+    <div id="d4" class="dropdown-content">
+      <a href="#directx">DirectX</a>
+      <a href="#vulkan">Vulkan</a>
+      <a href="#metal">Metal</a>
+    </div>
+
+    <div class="nodropdown">
+      <a href="https://github.com/apetor56" class="nodropbtn">Code repository</a>
+    </div>
+  </div>
+</nav>
+
+<article class="maincontent">
+  <h1>
+    Welcome to OpenGL
+    <img class="mainImg" id="float_r" src="img/triangles.png">
+  </h1>
+  <p>Welcome to the online book for learning OpenGL! Whether you are trying to learn OpenGL for academic purposes, to pursue a career or simply looking for a hobby, this book will teach you the basics, the intermediate, and all the advanced knowledge using modern (core-profile) OpenGL. The aim of LearnOpenGL is to show you all there is to modern OpenGL in an easy-to-understand fashion with clear examples, while also providing a useful reference for later studies.</p>
+
+  <h1>So why read these chapters?</h1>
+  <p>Throughout the internet there are thousands of documents, books, and resources on learning OpenGL, however, most of these resources are only focused on OpenGL's immediate mode (commonly referred to as the old OpenGL), are incomplete, lack proper documentation, or are not suited for your learning preferences. Therefore, my aim is to provide a platform that is both complete and easy to understand.</p>
+  <p>If you enjoy reading content that provides step-by-step instructions, clear examples, and that won't throw you in the deep with millions of details, this book is probably for you. The chapters aim to be understandable for people without any graphics programming experience, but are still interesting to read for the more experienced users. We also discuss practical concepts that, with some added creativity, could turn your ideas into real 3D applications. If all of the previous sounds like someone that could be you, then by all means, please continue.</p>
+
+  <img class="mainImg" id="float_l" src="img/raytracing.png">
+  <h1>
+    What will you learn?
+  </h1>
+  <p>The focus of these chapters are on Modern OpenGL. Learning (and using) modern OpenGL requires a strong knowledge of graphics programming and how OpenGL operates under the hood to really get the best of your experience. So we will start by discussing core graphics aspects, how OpenGL actually draws pixels to your screen, and how we can leverage that knowledge to create some funky looking effects. </p>
+  <p>On top of the core knowledge we will discuss many useful techniques that you can use for your applications, like: traversing a scene, create beautiful lighting, load custom-made objects from a modelling program, do cool post-processing techniques, and much more. We also feature a walkthrough series where we actually create a small game based on our obtained OpenGL knowledge, so you will really get a feel of what it's like to actually do graphics programming. </p>
+</article>
+
+<aside class="logos">
+  <div class="segment">
+    <img src="img/opengl.png">
+  </div>
+  <div class="segment">
+    <img src="img/directx.png">
+  </div>
+  <div class="segment">
+    <img src="img/vulkan.png">
+  </div>
+  <div class="segment">
+    <img src="img/metal.png">
+  </div>
+</aside>
+
+</body>
+</html>
