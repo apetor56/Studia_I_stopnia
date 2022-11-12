@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Textures</title>
+  <link rel="stylesheet" href="css/dropdown.css">
+  <script src="js/dropdown.js"></script>
+</head>
+<body>
+<header class="toptext">Basics: Textures</header>
+<nav class="leftmenu">
+  <div class="nodropdown">
+    <a href="./index.html" class="nodropbtn" style="margin-top: 0px">Introduction</a>
+  </div>
+
+  <div class="dropdown">
+    <button onclick=myFunction("d1") class="dropbtn">Basics</button>
+    <div id="d1" class="dropdown-content">
+      <a href="#window">window</a>
+      <a href="./triangle.html">first triange</a>
+      <a href="#shaders">shaders</a>
+      <a href="./textures.html">textures</a>
+      <a href="#coordinates">coordinate spaces</a>
+    </div>
+
+    <button onclick=myFunction("d2") class="dropbtn">Lighting</button>
+    <div id="d2" class="dropdown-content">
+      <a href="./colors.html">colors</a>
+      <a href="#basiclighting">basic lighting</a>
+      <a href="#materials">materials</a>
+      <a href="#lightingmaps">lighting maps</a>
+    </div>
+
+    <button onclick=myFunction("d3") class="dropbtn">Model Loading</button>
+    <div id="d3" class="dropdown-content">
+      <a href="#assimp">assimp</a>
+      <a href="#mesh">mesh</a>
+      <a href="#model">model</a>
+    </div>
+
+    <button onclick=myFunction("d4") class="dropbtn">Other APIs</button>
+    <div id="d4" class="dropdown-content">
+      <a href="#directx">DirectX</a>
+      <a href="#vulkan">Vulkan</a>
+      <a href="#metal">Metal</a>
+    </div>
+
+    <div class="nodropdown">
+      <a href="https://github.com/apetor56" class="nodropbtn">Code repository</a>
+    </div>
+  </div>
+</nav>
+
+<article class="maincontent">
+<h1>Textures</h1>
+  <p>We learned that to add more detail to our objects we can use colors for each vertex to create some interesting images. However, to get a fair bit of realism we'd have to have many vertices so we could specify a lot of colors. This takes up a considerable amount of extra overhead, since each model needs a lot more vertices and for each vertex a color attribute as well.</p>
+  <p>What artists and programmers generally prefer is to use a texture. A texture is a 2D image (even 1D and 3D textures exist) used to add detail to an object; think of a texture as a piece of paper with a nice brick image (for example) on it neatly folded over your 3D house so it looks like your house has a stone exterior. Because we can insert a lot of detail in a single image, we can give the illusion the object is extremely detailed without having to specify extra vertices.</p>
+  <p>Below you'll see a texture image of a brick wall mapped to the triangle from the previous chapter.</p>
+  <img class="center" src="img/textures.png">
+  <p>In order to map a texture to the triangle we need to tell each vertex of the triangle which part of the texture it corresponds to. Each vertex should thus have a texture coordinate associated with them that specifies what part of the texture image to sample from. Fragment interpolation then does the rest for the other fragments.</p>
+  <p>Texture coordinates range from 0 to 1 in the x and y axis (remember that we use 2D texture images). Retrieving the texture color using texture coordinates is called sampling. Texture coordinates start at (0,0) for the lower left corner of a texture image to (1,1) for the upper right corner of a texture image. The following image shows how we map texture coordinates to the triangle:</p>
+  <img class="center" src="img/tex_coords.png">
+  <p>We specify 3 texture coordinate points for the triangle. We want the bottom-left side of the triangle to correspond with the bottom-left side of the texture so we use the (0,0) texture coordinate for the triangle's bottom-left vertex. The same applies to the bottom-right side with a (1,0) texture coordinate. The top of the triangle should correspond with the top-center of the texture image so we take (0.5,1.0) as its texture coordinate. We only have to pass 3 texture coordinates to the vertex shader, which then passes those to the fragment shader that neatly interpolates all the texture coordinates for each fragment.</p>
+  <p>The resulting texture coordinates would then look like this:</p>
+  <code>
+    float texCoords[] = {<br>
+    <span>0.0f, 0.0f,  // lower-left corner</span><br>
+    <span>1.0f, 0.0f,  // lower-right corner</span><br>
+    <span>0.5f, 1.0f   // top-center corner</span><br>
+    };<br>
+  </code>
+  <p>Texture sampling has a loose interpretation and can be done in many different ways. It is thus our job to tell OpenGL how it should sample its textures.</p>
+  <h1>Texture Wrapping</h1>
+  <p>Texture coordinates usually range from (0,0) to (1,1) but what happens if we specify coordinates outside this range? The default behavior of OpenGL is to repeat the texture images (we basically ignore the integer part of the floating point texture coordinate), but there are more options OpenGL offers:</p>
+  <p>
+    <ul>
+      <li>GL_REPEAT: The default behavior for textures. Repeats the texture image.</li>
+      <li>GL_MIRRORED_REPEAT: Same as GL_REPEAT but mirrors the image with each repeat.</li>
+      <li>GL_CLAMP_TO_EDGE: Clamps the coordinates between 0 and 1. The result is that higher coordinates become clamped to the edge, resulting in a stretched edge pattern.</li>
+      <li>GL_CLAMP_TO_BORDER: Coordinates outside the range are now given a user-specified border color.</li>
+    </ul>
+  </p>
+  <p>Each of the options have a different visual output when using texture coordinates outside the default range. Let's see what these look like on a sample texture image (original image by Hólger Rezende):</p>
+  <img class="center" src="img/texture_wrapping.png" style="background-color: #4A6CA4FF">
+  <p>Each of the aforementioned options can be set per coordinate axis (s, t (and r if you're using 3D textures) equivalent to x,y,z) with the glTexParameter* function:</p>
+  <code>
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT);<br>
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_MIRRORED_REPEAT);<br>
+  </code>
+  <h1>Texture Filtering</h1>
+  <p>Texture coordinates do not depend on resolution but can be any floating point value, thus OpenGL has to figure out which texture pixel (also known as a texel ) to map the texture coordinate to. This becomes especially important if you have a very large object and a low resolution texture. You probably guessed by now that OpenGL has options for this texture filtering as well. There are several options available but for now we'll discuss the most important options: GL_NEAREST and GL_LINEAR.</p>
+  <p>GL_NEAREST (also known as nearest neighbor or point filtering) is the default texture filtering method of OpenGL. When set to GL_NEAREST, OpenGL selects the texel that center is closest to the texture coordinate. Below you can see 4 pixels where the cross represents the exact texture coordinate. The upper-left texel has its center closest to the texture coordinate and is therefore chosen as the sampled color:</p>
+  <img class="center" src="img/filter_nearest.png">
+  <p>GL_LINEAR (also known as (bi)linear filtering) takes an interpolated value from the texture coordinate's neighboring texels, approximating a color between the texels. The smaller the distance from the texture coordinate to a texel's center, the more that texel's color contributes to the sampled color. Below we can see that a mixed color of the neighboring pixels is returned:</p>
+  <img class="center" src="img/filter_linear.png">
+  <p>But what is the visual effect of such a texture filtering method? Let's see how these methods work when using a texture with a low resolution on a large object (texture is therefore scaled upwards and individual texels are noticeable):</p>
+  <img class="center" src="img/texture_filtering.png" style="background-color: #4A6CA4FF">
+  <p>GL_NEAREST results in blocked patterns where we can clearly see the pixels that form the texture while GL_LINEAR produces a smoother pattern where the individual pixels are less visible. GL_LINEAR produces a more realistic output, but some developers prefer a more 8-bit look and as a result pick the GL_NEAREST option.</p>
+  <h1>Mipmaps</h1>
+  <p>Imagine we had a large room with thousands of objects, each with an attached texture. There will be objects far away that have the same high resolution texture attached as the objects close to the viewer. Since the objects are far away and probably only produce a few fragments, OpenGL has difficulties retrieving the right color value for its fragment from the high resolution texture, since it has to pick a texture color for a fragment that spans a large part of the texture. This will produce visible artifacts on small objects, not to mention the waste of memory bandwidth using high resolution textures on small objects.</p>
+  <p>To solve this issue OpenGL uses a concept called mipmaps that is basically a collection of texture images where each subsequent texture is twice as small compared to the previous one. The idea behind mipmaps should be easy to understand: after a certain distance threshold from the viewer, OpenGL will use a different mipmap texture that best suits the distance to the object. Because the object is far away, the smaller resolution will not be noticeable to the user. OpenGL is then able to sample the correct texels, and there's less cache memory involved when sampling that part of the mipmaps. Let's take a closer look at what a mipmapped texture looks like:</p>
+  <img class="center" src="img/mipmaps.png">
+  <p>Creating a collection of mipmapped textures for each texture image is cumbersome to do manually, but luckily OpenGL is able to do all the work for us with a single call to glGenerateMipmap after we've created a texture.</p>
+  <p>When switching between mipmaps levels during rendering OpenGL may show some artifacts like sharp edges visible between the two mipmap layers. Just like normal texture filtering, it is also possible to filter between mipmap levels using NEAREST and LINEAR filtering for switching between mipmap levels. To specify the filtering method between mipmap levels we can replace the original filtering methods with one of the following four options:</p>
+  <p>
+    <ul>
+      <li>GL_NEAREST_MIPMAP_NEAREST: takes the nearest mipmap to match the pixel size and uses nearest neighbor interpolation for texture sampling.</li>
+      <li>GL_LINEAR_MIPMAP_NEAREST: takes the nearest mipmap level and samples that level using linear interpolation.</li>
+      <li>GL_NEAREST_MIPMAP_LINEAR: linearly interpolates between the two mipmaps that most closely match the size of a pixel and samples the interpolated level via nearest neighbor interpolation.</li>
+      <li>GL_LINEAR_MIPMAP_LINEAR: linearly interpolates between the two closest mipmaps and samples the interpolated level via linear interpolation.</li>
+    </ul>
+  </p>
+  <p>Just like texture filtering we can set the filtering method to one of the 4 aforementioned methods using glTexParameteri:</p>
+  <code>
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);<br>
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);<br>
+  </code>
+  <p>A common mistake is to set one of the mipmap filtering options as the magnification filter. This doesn't have any effect since mipmaps are primarily used for when textures get downscaled: texture magnification doesn't use mipmaps and giving it a mipmap filtering option will generate an OpenGL GL_INVALID_ENUM error code.</p>
+</article>
+
+<aside class="logos">
+  <div class="segment">
+    <img src="img/opengl.png">
+  </div>
+  <div class="segment">
+    <img src="img/directx.png">
+  </div>
+  <div class="segment">
+    <img src="img/vulkan.png">
+  </div>
+  <div class="segment">
+    <img src="img/metal.png">
+  </div>
+</aside>
+</body>
+</html>
