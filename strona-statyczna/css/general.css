@@ -1,0 +1,261 @@
+@media only screen and (min-width: 550px) {
+  .dropbtn, .nodropbtn {
+    width: 250px;
+    height: 70px;
+    font-size: 30px;
+  }
+
+  #float_r {
+    float: right;
+    margin-left: 10px
+  }
+
+  #float_l {
+    float: left;
+    margin-right: 10px;
+  }
+
+  .logos {
+    width: 250px;
+    height: 200px;
+  }
+
+  .maincontent {
+    position: absolute;
+    font-size: 18px;
+    left: 260px;
+  }
+
+  .dropdown-content {
+    font-size: 20px;
+    min-width: 250px;
+  }
+
+  .leftmenu {
+    width: 250px;
+    height: 75%;
+  }
+
+  .toptext {
+    font-size: 55px;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .dropbtn, .nodropbtn {
+    width: 100%;
+    height: 50px;
+    font-size: 25px;
+  }
+
+  #float_r {
+    float: none;
+  }
+
+  #float_l {
+    float: none;
+  }
+
+  .logos {
+    display: none;
+  }
+
+  .maincontent {
+    position: relative;
+    clear: both;
+  }
+
+  .mainImg {
+    position: relative;
+    left: 50%;
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    margin: 5px;
+  }
+
+  .dropdown-content {
+    position: center;
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    font-size: 20px;
+  }
+
+  .leftmenu {
+    width: 100%;
+    height: 15%;
+  }
+
+  .toptext {
+    font-size: 30px;
+  }
+}
+
+* {
+  margin: 0px;
+}
+
+span {
+  margin-left: 30px;
+}
+
+code {
+  tab-size: 4;
+  position: relative;
+  box-sizing: border-box;
+  display: block;
+  padding: 5px;
+  margin-bottom: 15px;
+  margin-top: 15px;
+  color: #54e100;
+  background-color: rgba(9, 8, 8, 0.62);
+}
+
+.dropbtn, .nodropbtn {
+  background-image: linear-gradient(to right, #143a52, #4164e3);
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+  align-content: center;
+  text-decoration: none;
+
+  position: relative;
+  text-align: left;
+  background-color: #77b4ff;
+  color: white;
+
+  margin-bottom: 5px;
+  margin-top: 5px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-style: none;
+  border-radius: 15px;
+  cursor: pointer;
+  font-family: "Copperplate Gothic Light";
+}
+
+.nodropbtn {
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+.leftmenu {
+  align-content: center;
+  align-items: center;
+  float: left;
+  box-sizing: border-box;
+  margin-top: 10px;
+}
+
+.dropbtn:hover, .dropbtn:focus, .nodropbtn:hover, .nodropbtn:focus {
+  background-image: linear-gradient(to right, #0e1d42, #254ba1);
+}
+
+.dropdown, .nodropdown {
+  position: relative;
+  display: block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #e6f5ff;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  border-radius: 10px;
+}
+
+.dropdown-content a {
+  font-family: "Copperplate Gothic Light";
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown a:hover {background-color: #ddd;}
+
+.show {display: block;}
+
+.toptext {
+  align-content: center;
+  box-sizing: border-box;
+  display: flex;
+  overflow: hidden;
+
+  align-items: center;
+  align-content: center;
+
+  width: 100%;
+  height: 10%;
+  border-radius: 15px;
+  padding: 4px;
+
+  background-image: linear-gradient(to right, #0e3267, #0e25cc);
+  font-family: "Copperplate Gothic Light";
+  color: #ced4da;
+}
+
+body {
+  background-image: linear-gradient(to right, #03032a, #303754);
+  margin: 15px;
+}
+
+h1 {
+  margin: 5px;
+}
+.logos {
+  align-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 10px;
+  clear: both;
+  border-style: solid;
+  border-color: #00259d;
+  border-radius: 15px;
+  background-image: linear-gradient(to right, #08374b, #4164e3);
+}
+
+.maincontent {
+  color: #ced4da;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 5px;
+  padding: 5px 5px 0px 5px;
+  font-family: Bahnschrift;
+}
+
+.segment {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  image-rendering: high-quality;
+  float: left;
+  width: 48%;
+  height: 50%;
+}
+
+.segment img {
+  max-width: 90%;
+  max-height: 90%;
+}
+
+p {
+  position: relative;
+  margin: 15px 5px 15px 5px;
+}
+
+.mainImg {
+  margin: 0px;
+  width: 250px;
+  height: 250px;
+}
+
+img.center{
+  max-width: 90%;
+  position: relative;
+  left: 50%;
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+  margin: 5px;
+}
