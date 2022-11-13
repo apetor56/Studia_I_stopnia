@@ -1,6 +1,3 @@
-from audioop import add
-
-
 def NWD(a, b) -> int:
     return NWD(b, a % b) if b else a
 
