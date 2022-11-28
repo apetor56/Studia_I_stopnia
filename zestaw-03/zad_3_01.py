@@ -1,7 +1,7 @@
 # Czy podany kod jest poprawny składniowo w Pythonie? Jeśli nie, to dlaczego?
 
 # Ten fragment jest poprawny: zastosowano odpowiednie wcięcie (tabulację)
-x = 2; y = 3;
+x = 2; y = 3; 
 if (x > y):
     result = x;
 else:
