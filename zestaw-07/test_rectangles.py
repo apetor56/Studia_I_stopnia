@@ -91,6 +91,29 @@ class TestRectangle(unittest.TestCase):
             self.r1.move(15.5, list)
         with self.assertRaises(TypeError):
             self.r1.move('44', 17)
+
+    def test_intersection(self):
+        self.assertEqual(Rectangle(0, 0, 4, 4).intersection(Rectangle(1, 1, 5, 5)),
+                         Rectangle(1, 1, 4, 4))
+        
+        with self.assertRaises(ValueError):
+            Rectangle(10, 20, 40, 50).intersection(Rectangle(1, 1, 5, 5))
+
+    def test_cover(self):
+        self.assertEqual(Rectangle(0, 0, 4, 4).cover(Rectangle(1, 1, 5, 5)),
+                         Rectangle(0, 0, 5, 5))
+
+        with self.assertRaises(TypeError):
+            self.r1.cover(5)
+
+    def test_make4(self):
+        self.assertEqual(Rectangle(0, 0, 4, 4).make4(),
+                        (
+                            Rectangle(0, 2, 2, 4),
+                            Rectangle(2, 2, 4, 4),
+                            Rectangle(2, 0, 4, 2),
+                            Rectangle(0, 0, 2, 2)
+                        ))
     
 if __name__ == '__main__':
     unittest.main()
