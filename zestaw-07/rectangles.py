@@ -38,3 +38,27 @@ class Rectangle:
         mv = Point(x, y)
         self.pt1 = self.pt1 + mv
         self.pt2 = self.pt2 + mv
+
+    def intersection(self, other):
+        if not isinstance(other, Rectangle):
+            raise TypeError
+
+        if self.pt1.x > other.pt2.x or self.pt2.x < other.pt1.x or self.pt1.y > other.pt2.y or self.pt2.y < other.pt1.y:
+            raise ValueError
+        else:
+            return Rectangle(max(self.pt1.x, other.pt1.x), max(self.pt1.y, other.pt1.y), min(self.pt2.x, other.pt2.x), min(self.pt2.y, other.pt2.y))
+
+    def cover(self, other):
+        if not isinstance(other, Rectangle):
+            raise TypeError
+        
+        return Rectangle(min(self.pt1.x, other.pt1.x), min(self.pt1.y, other.pt1.y), max(self.pt2.x, other.pt2.x), max(self.pt2.y, other.pt2.y))
+
+    def make4(self):
+        return (
+            Rectangle(self.pt1.x, self.center().y, self.center().x, self.pt2.y),
+            Rectangle(self.center().x, self.center().y, self.pt2.x, self.pt2.y),
+            Rectangle(self.center().x, self.pt1.y, self.pt2.x, self.center().y),
+            Rectangle(self.pt1.x, self.pt1.y, self.center().x, self.center().y)
+        )
+        
