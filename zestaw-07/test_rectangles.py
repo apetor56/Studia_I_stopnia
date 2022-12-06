@@ -11,7 +11,7 @@ class TestRectangle(unittest.TestCase):
 
     def test_init(self):
         with self.assertRaises(TypeError):
-            Rectangle('aa', 5, [1, 2, 3], ())
+            Rectangle('aa', 5, [1, 2, 3], ()) 
 
         with self.assertRaises(TypeError):
             Rectangle(0, map, list, [[[]]])

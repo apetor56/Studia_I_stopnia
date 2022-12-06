@@ -34,4 +34,4 @@ class Point:
         return (self * self) ** (1 / 2)
     
     def __hash__(self):
-        return hash((self.x, self.y))   # bazujemy na tuple, immutable points
+        return hash((self.x, self.y))   # bazujemy na tuple, immutable points 
