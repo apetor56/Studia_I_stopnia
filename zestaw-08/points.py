@@ -1,6 +1,6 @@
 class Point:
     """Klasa reprezentująca punkty na płaszczyźnie."""
-
+ 
     def __init__(self, x, y):  # konstuktor
         self.x = x
         self.y = y
