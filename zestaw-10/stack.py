@@ -1,4 +1,4 @@
-class Stack:
+class Stack: 
     def __init__(self, size = 5):
         self.items = size * [None] 
         self.n = 0                     
