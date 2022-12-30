@@ -1,4 +1,5 @@
-
+from math import acos
+from math import pi
 
 class Quaterion:
     """Quaterion class implementation"""
@@ -151,6 +152,14 @@ class Quaterion:
             raise TypeError('Provided object(s) to dot product function which are not quaterions')
 
         return q1.s * q2.s + q1.x * q2.x + q1.y * q2.y + q1.z * q2.z
+
+    @staticmethod
+    def angle(q1, q2) -> float:
+        if not all(isinstance(item, Quaterion) for item in [q1, q2]):
+            raise TypeError('Provided object(s) to dot product function which are not quaterions')
+        
+        return acos(Quaterion.dot(q1, q2) / (q1.magnitude() * q2.magnitude())) * 180.0 / pi
+
 
 if __name__ == '__main__':
     pass
