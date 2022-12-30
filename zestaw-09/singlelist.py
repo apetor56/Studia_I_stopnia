@@ -1,4 +1,4 @@
-class Node:
+class Node: 
     """Klasa reprezentująca węzeł listy jednokierunkowej."""
 
     def __init__(self, data=None, next=None):
