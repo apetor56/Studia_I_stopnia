@@ -201,6 +201,11 @@ class TestQuaterion(unittest.TestCase):
         with self.assertRaises(TypeError):
             Quaterion.dot('abc', {{}})
 
+    def test_angle(self):
+        q1 = Quaterion(0, 1, 0, 0)
+        q2 = Quaterion(0, 0, 3, 7)
+        self.assertEqual(Quaterion.angle(q1, q2), 90.0)
+
 
 if __name__ == '__main__':
     unittest.main()
