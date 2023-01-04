@@ -4,8 +4,8 @@ from math import pi
 class Quaterion:
     """Quaterion class implementation"""
 
-    """Default quaterion constructor, takes 4 numbers"""
     def __init__(self, s = 0, x = 1, y = 1, z = 1):
+        """Default quaterion constructor, takes 4 numbers"""
         if not all(isinstance(item, (int, float)) for item in [s, x, y, z]):
             raise TypeError("given numbers must be integers or floats")
         
@@ -14,9 +14,9 @@ class Quaterion:
         self.y = y
         self.z = z
 
-    """Creates quaterion from given scalar (real part) and vector(3D, describes imaginary part)"""
     @classmethod
     def from_scalar_and_vector(cls, s, v):
+        """Creates quaterion from given scalar (real part) and vector(3D, describes imaginary part)"""
         if(len(v) != 3):
             raise ValueError("vector must have length of 3")
 
@@ -27,24 +27,24 @@ class Quaterion:
 
         return cls(re_list[0], re_list[1], re_list[2], re_list[3])
 
-    """Creates quaterion from another quaterion (copy)"""
     @classmethod
     def from_quaterion(cls, other):
+        """Creates quaterion from another quaterion (copy)"""
         if not isinstance(other, Quaterion):
             raise TypeError('passed object to copy must be quaterion, not {}'.format(type(other)))
 
         return cls(other.s, other.x, other.y, other.z)
 
-    """Returns quaterion in form of string"""
     def __str__(self) -> str:
+        """Returns quaterion in form of string"""
         return '{} + {}i + {}j + {}k'.format(self.s, self.x, self.y, self.z)
 
-    """Returns quaterion representation"""
     def __repr__(self) -> str:
+        """Returns quaterion representation"""
         return  'Quaterion[{}, {}, {}, {}]'.format(self.s, self.x, self.y, self.z)
 
-    """Checks if two quaterions are equal"""
     def __eq__(self, other) -> bool:
+        """Checks if two quaterions are equal"""
         if not isinstance(other, Quaterion):
             raise TypeError('other object is not a quaterion, but {}'.format(type(other)))
         
@@ -53,26 +53,26 @@ class Quaterion:
 
         return False
 
-    """Checks is two quaterions are different"""
     def __ne__(self, other) -> bool:
+        """Checks is two quaterions are different"""
         return not self == other
 
-    """Returns new quaterion in result of addition of two quaterions"""
     def __add__(self, other):
+        """Returns new quaterion in result of addition of two quaterions"""
         if not isinstance(other, Quaterion):
             raise TypeError('second factor in addition must be quaterion, not {}'.format(type(other)))
 
         return Quaterion(self.s + other.s, self.x + other.x, self.y + other.y, self.z + other.z)
 
-    """Returns new quaterion in result of substraction one quaterion from another"""
     def __sub__(self, other):
+        """Returns new quaterion in result of substraction one quaterion from another"""
         if not isinstance(other, Quaterion):
             raise TypeError('second factor in substraction must be quaterion, not {}'.format(type(other)))
 
         return Quaterion(self.s - other.s, self.x - other.x, self.y - other.y, self.z - other.z)
 
-    """Returns quaterion product"""
     def __mul__(self, other):
+        """Returns quaterion product"""
         if not isinstance(other, (Quaterion, int, float)):
             raise TypeError('second factor in substraction must be quaterion, int or float, not {}'.format(type(other)))
 
@@ -92,8 +92,8 @@ class Quaterion:
 
         return result
 
-    """Devides quaterion by scalar (return copy)"""
     def __truediv__(self, number):
+        """Devides quaterion by scalar (return copy)"""
         if not isinstance(number, (int, float)):
             raise TypeError('expected scalar value, not {}'.format(type(number)))
 
@@ -108,16 +108,16 @@ class Quaterion:
 
         return result
 
-    """Checks if quaterion is pure"""
     def isPure(self) -> bool:
+        """Checks if quaterion is pure"""
         return self.s == 0 and (self.x != 0 or self.y != 0 or self.z != 0)
 
-    """Checks if quaterion is real"""
     def isReal(self) -> bool:
+        """Checks if quaterion is real"""
         return self.s != 0 and (self.x == 0 and self.y == 0 and self.z == 0)
 
-    """Returns quaterion conjugate (copy)"""
     def conjugate(self):
+        """Returns quaterion conjugate (copy)"""
         result = Quaterion.from_quaterion(self)
         result.x *= -1
         result.y *= -1
@@ -125,29 +125,29 @@ class Quaterion:
 
         return result
 
-    """Returns quaterion magnitude"""
     def magnitude(self) -> float:
+        """Returns quaterion magnitude"""
         return (self * self.conjugate()).s ** (0.5)
 
-    """Return new quaterion which is result of normalization of given quaterion"""
     def makeUnit(self):
+        """Return new quaterion which is result of normalization of given quaterion"""
         result = Quaterion.from_quaterion(self)
         result = result / result.magnitude()
 
         return result
 
-    """Checks if given quaterion is a unit quaterion"""
     def isUnit(self) -> bool:
+        """Checks if given quaterion is a unit quaterion"""
         delta = 1e-8
         return self.magnitude() < 1 + delta and self.magnitude() > 1 - delta
 
-    """Return inversion of given quaterion (new object)"""
     def inverse(self):
+        """Return inversion of given quaterion (new object)"""
         return self.conjugate() / (self.magnitude()**2)
 
-    """Returns dot product of given quaterions"""
     @staticmethod
     def dot(q1, q2) -> float:
+        """Returns dot product of given quaterions"""
         if not all(isinstance(item, Quaterion) for item in [q1, q2]):
             raise TypeError('Provided object(s) to dot product function which are not quaterions')
 
@@ -155,6 +155,7 @@ class Quaterion:
 
     @staticmethod
     def angle(q1, q2) -> float:
+        """Returns angle in degrees between two quaterions"""
         if not all(isinstance(item, Quaterion) for item in [q1, q2]):
             raise TypeError('Provided object(s) to dot product function which are not quaterions')
         
