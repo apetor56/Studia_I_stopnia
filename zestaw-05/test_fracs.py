@@ -1,6 +1,6 @@
 import unittest
 from fracs import *
-
+ 
 class TestFractions(unittest.TestCase):
 
     def setUp(self):
