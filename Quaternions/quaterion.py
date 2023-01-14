@@ -1,10 +1,11 @@
 from math import acos
 from math import pi
+import cmath
 
 class Quaterion:
     """Quaterion class implementation"""
 
-    def __init__(self, s = 0, x = 1, y = 1, z = 1):
+    def __init__(self, s = 0, x = 0, y = 0, z = 0):
         """Default quaterion constructor, takes 4 numbers"""
         if not all(isinstance(item, (int, float)) for item in [s, x, y, z]):
             raise TypeError("given numbers must be integers or floats")
@@ -14,18 +15,25 @@ class Quaterion:
         self.y = y
         self.z = z
 
+    @staticmethod
+    def _normalize(other):
+        """Covert int or float into quaterion"""
+        if isinstance(other, Quaterion):
+            return other
+        elif isinstance(other, (int, float)):
+            return Quaterion(other)
+        elif(isinstance(other, complex)):
+            return Quaterion(other.real, other.imag)
+
+        raise TypeError('cannot convert to quaterion')
+        
     @classmethod
     def from_scalar_and_vector(cls, s, v):
         """Creates quaterion from given scalar (real part) and vector(3D, describes imaginary part)"""
         if(len(v) != 3):
             raise ValueError("vector must have length of 3")
 
-        re_list = [s]
-        re_list.extend(v)
-        if not all(isinstance(item, (int, float)) for item in re_list):
-            raise TypeError("given numbers must be integers or floats")
-
-        return cls(re_list[0], re_list[1], re_list[2], re_list[3])
+        return cls(s, v[0], v[1], v[2])
 
     @classmethod
     def from_quaterion(cls, other):
@@ -59,39 +67,38 @@ class Quaterion:
 
     def __add__(self, other):
         """Returns new quaterion in result of addition of two quaterions"""
-        if not isinstance(other, Quaterion):
-            raise TypeError('second factor in addition must be quaterion, not {}'.format(type(other)))
+        other = Quaterion._normalize(other)
 
         return Quaterion(self.s + other.s, self.x + other.x, self.y + other.y, self.z + other.z)
 
+    def __radd__(self, other):
+        other = Quaterion._normalize(other)
+
+        return self + other
+
     def __sub__(self, other):
         """Returns new quaterion in result of substraction one quaterion from another"""
-        if not isinstance(other, Quaterion):
-            raise TypeError('second factor in substraction must be quaterion, not {}'.format(type(other)))
+        other = Quaterion._normalize(other)
 
         return Quaterion(self.s - other.s, self.x - other.x, self.y - other.y, self.z - other.z)
 
     def __mul__(self, other):
         """Returns quaterion product"""
-        if not isinstance(other, (Quaterion, int, float)):
-            raise TypeError('second factor in substraction must be quaterion, int or float, not {}'.format(type(other)))
+        other = Quaterion._normalize(other)
 
-        if type(other) == Quaterion:
-            result = Quaterion()
-            result.s = self.s * other.s - self.x * other.x - self.y * other.y - self.z * other.z 
-            result.x = self.s * other.x + self.x * other.s + self.y * other.z - self.z * other.y 
-            result.y = self.s * other.y + self.y * other.s + self.z * other.x - self.x * other.z 
-            result.z = self.s * other.z + self.z * other.s + self.x * other.y - self.y * other.x
-
-        else:
-            result = Quaterion.from_quaterion(self)
-            result.s *= other
-            result.x *= other
-            result.y *= other
-            result.z *= other
+        result = Quaterion()
+        result.s = self.s * other.s - self.x * other.x - self.y * other.y - self.z * other.z 
+        result.x = self.s * other.x + self.x * other.s + self.y * other.z - self.z * other.y 
+        result.y = self.s * other.y + self.y * other.s + self.z * other.x - self.x * other.z 
+        result.z = self.s * other.z + self.z * other.s + self.x * other.y - self.y * other.x
 
         return result
 
+    def __rmul__(self, other):
+        other = Quaterion._normalize(other)
+        
+        return self * other
+    
     def __truediv__(self, number):
         """Devides quaterion by scalar (return copy)"""
         if not isinstance(number, (int, float)):
