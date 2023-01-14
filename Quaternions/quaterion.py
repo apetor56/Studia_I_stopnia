@@ -70,13 +70,18 @@ class Quaterion:
     def __radd__(self, other):
         other = Quaterion._normalize(other)
 
-        return self + other
+        return other + self
 
     def __sub__(self, other):
         """Returns new quaterion in result of substraction one quaterion from another"""
         other = Quaterion._normalize(other)
 
         return Quaterion(self.s - other.s, self.x - other.x, self.y - other.y, self.z - other.z)
+
+    def __rsub__(self, other):
+        other = Quaterion._normalize(other)
+
+        return other - self
 
     def __mul__(self, other):
         """Returns quaterion product"""
