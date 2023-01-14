@@ -52,16 +52,10 @@ class TestQuaterion(unittest.TestCase):
         with self.assertRaises(TypeError):
             Quaterion.from_scalar_and_vector('aaa', [3, 'a', 'b'])
 
-    def test_from_quaterion(self):
-        self.assertEqual(Quaterion.from_quaterion(self.q1), self.q1)
-        self.assertEqual(Quaterion.from_quaterion(self.q2), self.q2)
-        self.assertEqual(Quaterion.from_quaterion(self.q3), self.q3)
-
-        with self.assertRaises(TypeError):
-            Quaterion.from_quaterion(1)
-
-        with self.assertRaises(TypeError):
-            Quaterion.from_quaterion('aaa')
+    def test_copy(self):
+        self.assertEqual(self.q1.copy(), self.q1)
+        self.assertEqual(self.q2.copy(), self.q2)
+        self.assertEqual(self.q3.copy(), self.q3)
 
     def test_str(self):
         self.assertEqual(str(self.q1), '1 + 2i + 3j + 4k')
@@ -143,7 +137,7 @@ class TestQuaterion(unittest.TestCase):
         self.assertEqual(2.5 * Quaterion(1, 2, 3, 4), Quaterion(2.5, 5, 7.5, 10))
         self.assertEqual(-4 * Quaterion(1, 2, 3, 4), Quaterion(-4, -8, -12, -16))
 
-        self.assertEqual(complex(6, 7) * Quaterion(1, 1, 1, 1), Quaterion(-1, 13, 13, -1))
+        self.assertEqual(complex(6, 7) * Quaterion(1, 1, 1, 1), Quaterion(-1, 13, -1, 13))
 
         with self.assertRaises(TypeError):
             'a' * self.q1
