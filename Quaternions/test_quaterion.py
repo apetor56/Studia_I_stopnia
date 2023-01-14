@@ -113,6 +113,14 @@ class TestQuaterion(unittest.TestCase):
         with self.assertRaises(TypeError):
             self.q1 - 'aaa'
 
+    def test_rsub(self):
+        self.assertEqual(5 - Quaterion(5, 1, 1, 1), Quaterion(0, -1, -1, -1))
+        self.assertEqual(5.5 - Quaterion(5, 1, 1, 1), Quaterion(0.5, -1, -1, -1))
+        self.assertEqual(complex(5, 1) - Quaterion(5, 1, 1, 1), Quaterion(0, 0, -1, -1))
+
+        with self.assertRaises(TypeError):
+            'aaa' - self.q1
+
     def test_mul(self):
         self.assertEqual(self.q2 * self.q3, Quaterion(-79, -9, 5, -7))
         self.assertEqual(self.q1 * self.q2, Quaterion(-32, 7, 4, 9))
