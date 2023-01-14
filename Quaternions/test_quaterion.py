@@ -52,6 +52,17 @@ class TestQuaterion(unittest.TestCase):
         with self.assertRaises(TypeError):
             Quaterion.from_scalar_and_vector('aaa', [3, 'a', 'b'])
 
+    def test_from_quaterion(self):
+        self.assertEqual(Quaterion.from_quaterion(self.q1), self.q1)
+        self.assertEqual(Quaterion.from_quaterion(self.q2), self.q2)
+        self.assertEqual(Quaterion.from_quaterion(self.q3), self.q3)
+
+        with self.assertRaises(TypeError):
+            Quaterion.from_quaterion(1)
+
+        with self.assertRaises(TypeError):
+            Quaterion.from_quaterion('aaa')
+
     def test_str(self):
         self.assertEqual(str(self.q1), '1 + 2i + 3j + 4k')
         self.assertEqual(str(self.q2), '1 + 2i + 3j + 5k')
@@ -79,14 +90,23 @@ class TestQuaterion(unittest.TestCase):
         self.assertEqual(self.q1 + self.q2, Quaterion(2, 4, 6, 9))
         self.assertEqual(self.q3 + self.q5, Quaterion.from_scalar_and_vector(1, (9, 12, 14)))
 
-        with self.assertRaises(TypeError):
-            self.q1 + 3
+        self.assertEqual(Quaterion(1, 1, 1, 1) + 7, Quaterion(8, 1, 1, 1))
+        self.assertEqual(Quaterion(1, 1, 1, 1) - 7.5, Quaterion(-6.5, 1, 1, 1))
+
+        self.assertEqual(Quaterion(1, 1, 1, 1) + complex(5, -1), Quaterion(6, 0, 1, 1))
 
         with self.assertRaises(TypeError):
             self.q1 + 'aaa'
 
+    def test_radd(self):
+        self.assertEqual(5 + Quaterion(1, 2, 3, 4) , Quaterion(6, 2, 3, 4))
+        self.assertEqual(-10.5 + Quaterion(0, 1, 1, 1) , Quaterion(-10.5, 1, 1, 1))
+        self.assertEqual(5.222 + Quaterion(-5.222, 0, 0, 0), Quaterion(0, 0, 0, 0))
+
+        self.assertEqual(complex(6, 7) + Quaterion(4, 3, -1, -1), Quaterion(10, 10, -1, -1))
+
         with self.assertRaises(TypeError):
-            self.q1 + 5.16
+            'a' * self.q1
 
     def test_sub(self):
         self.assertEqual(self.q1 - self.q1, Quaterion(0, 0, 0, 0))
@@ -95,13 +115,7 @@ class TestQuaterion(unittest.TestCase):
         self.assertEqual(self.q5 - self.q2, Quaterion(3, 2, 2, 0))
 
         with self.assertRaises(TypeError):
-            self.q1 - 3
-
-        with self.assertRaises(TypeError):
             self.q1 - 'aaa'
-
-        with self.assertRaises(TypeError):
-            self.q1 - 5.16
 
     def test_mul(self):
         self.assertEqual(self.q2 * self.q3, Quaterion(-79, -9, 5, -7))
@@ -113,6 +127,8 @@ class TestQuaterion(unittest.TestCase):
         self.assertEqual(self.q2 * 5, Quaterion(5, 10, 15, 25))
         self.assertEqual(self.q5 * 2.5, Quaterion(10, 10, 12.5, 12.5))
 
+        self.assertEqual(Quaterion(1, 1, 1, 1) * complex(6, 7), Quaterion(-1, 13, 13, -1))
+        
         with self.assertRaises(TypeError):
             self.q1 * "abc"
 
@@ -121,6 +137,16 @@ class TestQuaterion(unittest.TestCase):
 
         with self.assertRaises(TypeError):
             self.q1 * (())
+
+    def test_rmul(self):
+        self.assertEqual(5 * Quaterion(1, 2, 3, 4), Quaterion(5, 10, 15, 20))
+        self.assertEqual(2.5 * Quaterion(1, 2, 3, 4), Quaterion(2.5, 5, 7.5, 10))
+        self.assertEqual(-4 * Quaterion(1, 2, 3, 4), Quaterion(-4, -8, -12, -16))
+
+        self.assertEqual(complex(6, 7) * Quaterion(1, 1, 1, 1), Quaterion(-1, 13, 13, -1))
+
+        with self.assertRaises(TypeError):
+            'a' * self.q1
 
     def test_div(self):
         self.assertEqual(self.q1 / 5, Quaterion(0.2, 0.4, 0.6, 0.8))
