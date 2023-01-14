@@ -17,7 +17,7 @@ class Quaterion:
 
     @staticmethod
     def _normalize(other):
-        """Covert int or float into quaterion"""
+        """Covert int, float or complex into quaterion"""
         if isinstance(other, Quaterion):
             return other
         elif isinstance(other, (int, float)):
@@ -97,7 +97,7 @@ class Quaterion:
     def __rmul__(self, other):
         other = Quaterion._normalize(other)
         
-        return self * other
+        return other * self
     
     def __truediv__(self, number):
         """Devides quaterion by scalar (return copy)"""
