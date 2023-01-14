@@ -35,13 +35,9 @@ class Quaterion:
 
         return cls(s, v[0], v[1], v[2])
 
-    @classmethod
-    def from_quaterion(cls, other):
+    def copy(self):
         """Creates quaterion from another quaterion (copy)"""
-        if not isinstance(other, Quaterion):
-            raise TypeError('passed object to copy must be quaterion, not {}'.format(type(other)))
-
-        return cls(other.s, other.x, other.y, other.z)
+        return Quaterion(self.s, self.x, self.y, self.z)
 
     def __str__(self) -> str:
         """Returns quaterion in form of string"""
@@ -107,7 +103,7 @@ class Quaterion:
         if(number == 0):
             raise ValueError('Dividing by 0 is undefined')
 
-        result = Quaterion.from_quaterion(self)
+        result = self.copy()
         result.s /= number
         result.x /= number
         result.y /= number
@@ -125,7 +121,7 @@ class Quaterion:
 
     def conjugate(self):
         """Returns quaterion conjugate (copy)"""
-        result = Quaterion.from_quaterion(self)
+        result = self.copy()
         result.x *= -1
         result.y *= -1
         result.z *= -1
@@ -138,7 +134,7 @@ class Quaterion:
 
     def makeUnit(self):
         """Return new quaterion which is result of normalization of given quaterion"""
-        result = Quaterion.from_quaterion(self)
+        result = self.copy()
         result = result / result.magnitude()
 
         return result
