@@ -1,0 +1,9 @@
+<% if(logged == false) { %>
+    <a href="register" class="log-reg">register</a>
+    <a href="login" class="log-reg">login</a>
+  <% } else { %>
+    <form action='/logout' method="GET">
+      <p class="user-name"> <%= username %> </p>
+      <input type="submit" value="logout" class="log-reg"/>
+    </form>
+<% } %>
