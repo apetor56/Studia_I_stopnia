@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<%- include('./partials/head.ejs') %>
+
+<body style="width: 30%; transform: translate(110%, 30%);">
+
+<header class="toptext" style="text-align: center; font-size: 35px; margin-bottom: 25px; display: none;">
+    Log in
+</header>
+
+<div style="width: 100wv;">
+    <form action="/login" method="POST">
+      <label>User name:</label>
+      <input type="text" name="username" required>
+
+      <label>Password:</label>
+      <input type="password" pattern=".{8,}" name="password" required title="minimum 8 characters">
+
+      <button class="log-reg" style="float: none; width: 50%; transform: translate(50%); margin-top: 25px;">
+        Sign in
+      </button>
+    </form>
+</div>
+
+</body>
+</html>
