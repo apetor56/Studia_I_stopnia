@@ -18,7 +18,7 @@ const commentSchema = new mongoose.Schema({
     }
 }, {timestamps: true});
 
-// hash password
+// hash password 
 commentSchema.plugin(passportLocalMongoose);
 
 module.exports = mongoose.model('Comment', commentSchema);
