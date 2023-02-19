@@ -13,6 +13,7 @@ function handlePage(url) {
             flag = false;
         }
         Comment.find({section: url})
+        .sort({createdAt: -1})
         .then((result) => {
             res.render(url.substring(1), {logged: flag, username: name, comment_block: result});
         })
