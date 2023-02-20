@@ -352,7 +352,6 @@ label {
   background-color: rgb(10, 10, 31);
   border-radius: 10px;
   width: 95%;
-  transform: translate(-1%);
 }
 
 .comment {
@@ -361,7 +360,7 @@ label {
   border-radius: 15px;
   padding: 20px;
   margin-bottom: 10px;
-  width: 80%;
+  width: 95%;
 }
 
 .comment-form {
