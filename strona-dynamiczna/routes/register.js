@@ -29,11 +29,15 @@ router.get('/register', (req, res) => {
 router.post('/register', async (req, res) => {
     try {
         console.log(req.body);
-        const exists = await User.findOne({
-            username: req.body.username
+        const existsUserName = await User.findOne({
+            username: req.body.username,
         });
 
-        if(exists) {
+        const existsEmail = await User.findOne({
+            email: req.body.email
+        });
+
+        if(existsUserName || existsEmail) {
             res.redirect('/register');
         }
         else {
