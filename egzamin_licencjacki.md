@@ -83,7 +83,10 @@ public class Rower implements Pojazd {
 **2. Proszę omówić dostępne sposoby synchronizacji wątków w Javie.**
 <br>
 
-Metody oznaczone słowem `synchronized` - w danej chwili jedna taka metoda może być wykonana tylko przez jeden wątek.
+*<ins>1. Synchronizacja całej metody</ins>*
+
+W danym momencie tylko jedna metoda oznaczona jako `synchronized` może być wykonana przez tylko jeden wątek. Blokada następuje na podstawie obiektu, który wywołał daną metodę.
+
 ```java
 public class Counter {
     private int value = 0;
@@ -92,12 +95,128 @@ public class Counter {
         value++;
     }
 
-    public synchronized void decrement() {
-        value--;
-    }
-
     public synchronized int getValue() {
         return value;
     }
 }
 ```
+
+Jeśli przez jeden wątek wykonywana jest metoda `increment()`, to metoda `getValue()` nie może zostać wykonana (przez ten sam wątek lub inny) dopóki nie zostanie wykonana metoda `increment()`.
+
+```java
+public synchronized void funkcja() {
+	... jakies działanie
+}
+
+jest równoważne z 
+
+public void funkcja() {
+	synchronized(this) {
+		... jakies działanie
+	}
+}
+```
+
+*<ins>2. Synchronizacja na poziomie instrukcji</ins>*
+
+Działa podobnie jak powyższa metoda, lecz tutaj możemy synchronizować <ins>fragmenty</ins> danej metody, a nie całe ciało oraz do synchronizacji nie musimy koniecznie używać obiektu, który wywołuje daną metodę, lecz dowolny obiekt (najczęściej `Object`).
+
+Poniżej przykład ze zliczaniem, gdzie możemy mieć wiele obiektów typu `Counter`, lecz wspólną wartość `value`. Aby synchronizacja zaszła poprawanie to musimy ustalić również wspólny obiekt, który będzie nam blokawał metody dla wątków, które będą chciały się tam dostać (tutaj `lock`).
+
+```java
+public class Counter {
+    private static int value = 0;
+	private static final Object lock = new Object();
+
+    public void increment() {
+		synchronized(lock) {
+			value++;
+		}
+    }
+
+    public int getValue() {
+		synchronized(lock) {
+			return value;
+		}
+    }
+}
+```
+
+Jeśli `lock` jest zajęty przez jeden wątek, to inne wątki nie będą mogły wykonać metod, do których synchronizacji wykorzystano ten właśnie obiekt.
+
+*<ins>3. Blokada drobnoziarnista</ins>*
+
+Przykład z dwoma licznikami w jednej klasie - nie używamy ich obu wspólnie, więc nie chcemy blokować drugiego licznika, gdy modyfikujemy pierwszy. W tym celu tworzymy dwa obiekty, które będą nam służyły na locki.
+
+```java
+public class DoubleCounter {
+	public int v1 = 0;
+	public int v2 = 0;
+
+	private static final Object lock1 = new Object();
+	private static final Object lock2 = new Object();
+
+	public void increment1() {
+		synchronized(lock1) {
+			v1++;
+		}
+	}
+
+	public void increment2() {
+		synchronized(lock2) {
+			v2++;
+		}
+	}
+}
+```
+
+*<ins>4. Operacje atomowe - volatile</ins>*
+
+Operacja atomowa to taka, która nie może zatrzymać się pośrodku - albo się wykonuje całkowicie, albo wcale. Na ogół dostęp do zmiennych/referencji nie jest realizowany jako pojedyncza operacja, więc aby wszystkie te operacje były atomowe, to taką zmienną należy zadeklarować jako `volatile`.
+
+Atomowe są tylko operacje odczytu i zapisu.
+
+*<ins>5. wait() i notify()</ins>*
+
+W momencie gdy wątek musi poczekać, aż inny wątek wykona określoną część swoich zadań stosuje się mechanizm czekania i powiadamiania.
+
+`wait()` – powoduje, że bieżący wątek będzie czekał, aż inny wątek wywoła funkcję notify() dla tego obiektu lub notifyAll()​
+
+`notify(), notifyAll()` – wybudza wątki oczekujące na dostęp do tego obiektu
+
+```java
+public synchronized consume() {
+	while(!available) {
+		try {
+			wait(); // wstrzymuje dzialanie watku i zwalnia blokadę
+		} 
+		catch (InterruptedException e) {}
+	}
+
+	System.out.println("Skonsumowane");
+	available = false;
+}
+
+public synchronized produce() {
+	doProduce();
+	available = true;
+	notifyAll(); // powiadamia (budzi) wszystkie czekajace watki
+}
+```
+
+*<ins>6. Obiekt Lock</ins>*
+
+Działają podobnie jak słowa kluczowe synchronized, ale dają większą swobodę.
+
+`lock()` - próbuje zdobyć blokadę, jeśli jest dostępna; jeśli nie, wątek **zostanie zablokowany do momentu zwolnienia blokady**
+
+`tryLock()` - próbuje zdobyć blokadę natychmiastowo, zwraca true jeśli się uda, **nie blokuje się**
+
+`unlock()` - odblokowuje instancję blokady
+
+---
+
+## <a name=java3></a>
+<br>
+
+**3. Czy Java jest językiem kompilowanym czy interpretowanym?**
