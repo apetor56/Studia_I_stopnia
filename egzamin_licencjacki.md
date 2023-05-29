@@ -229,7 +229,7 @@ Java nie jest językiem kompilowanym oraz nie jest językiem interpretowanym - j
 To JVM jest dostosowana do każdej platformy, która obsługuje Javę, a nie poszczególne programy.
 
 
-![](./java3.png)
+![](img/java3.png)
 
 ---
 
@@ -243,7 +243,9 @@ To JVM jest dostosowana do każdej platformy, która obsługuje Javę, a nie pos
 - Dostarczana jest przez producentów baz co pozwala na ukrycie kwestii technicznych powiązanych z komunikacją z bazą
 
 Istnieją 2 sposoby łączenia się z bazą danych:
-1. **DriverManager**: napierw wczytujemy sterownik do bazy danych, a następnie za pomocą metody `getConnection` próbujemy uzyskać połączenie z bazą
+1. **DriverManager**:
+   -  jest tradycyjną warstwą zarządzającą JDBC pomiędzy użytkownikiem a sterownikiem,
+   - napierw wczytujemy sterownik do bazy danych, a następnie za pomocą metody `getConnection` próbujemy uzyskać połączenie z bazą
 
 
 ```java
@@ -254,12 +256,29 @@ Connection con = DriverManager.getConnection(url, "login", "haslo");
 ```
 
 2. **DataSource**
+   - reprezentuje źródło danych. Zawiera informacje identyfikujące i opisujące dane.
+   - brak bezpośredniego odwołania do sterownika przez aplikację,
+
+<br>
+
+*Wykonywanie zapytań*
+
+- executeQuery – pytania zwracające dane: `SELECT`,
+- executeUpdate – pytania zmieniające dane: `INSERT, UPDATE, CREATE TABLE`
+```java
+Statement stmt = con.createStatement();
+Result rs = stmt.executeQuery("SELECT imie from Student");
+
+while(rs.netx()) {
+	System.out.println(rs.getString("imie");
+}
+```
 
 ---
 
 <br>
 
-## <a name=java4></a>
+## <a name=java5></a>
 **5. Co to jest serializacja? Jak zrealizować serializację w Javie?**
 
 Serializacja jest to konwersja stanu obiektu na strumień bajtów. Jest ona wykorzystywana m.in. do **zapisywania stanu obiektu**, w celu jego późniejszego odtworzenia. 
@@ -272,7 +291,7 @@ Aby zrealizować serializację należy użyć klas `ObjectOutputStream` oraz `Ob
 
 <br>
 
-![](java5_1.png)
+![](img/java5_1.png)
 
 <br>
 
@@ -280,4 +299,4 @@ Można również skorzystać z formatu **JSON** .
 
 <br>
 
-![](java5_2.png)
+![](img/java5_2.png)
