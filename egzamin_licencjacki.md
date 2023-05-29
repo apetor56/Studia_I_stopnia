@@ -8,7 +8,14 @@
 [4. Co to jest JDBC?](#java4) <br>
 [5. Co to jest serializacja? Jak zrealizować serializację w Javie?](#java5) <br>
 
+### **Bazy danych**
+[1. Normalizacja baz danych - jej cel i wpływ na wydajność.](#bazy1) <br>
+[2. Klucze główne, obce i wyzwalacze.](#bazy2) <br>
+[3. Transakcje i zasady ASID.](#bazy3) <br>
+
 ---
+
+<br>
 
 ## <a name=java1></a>
 **1. Co to jest klasa abstrakcyjna i interfejs w Javie.**
@@ -269,7 +276,7 @@ Connection con = DriverManager.getConnection(url, "login", "haslo");
 Statement stmt = con.createStatement();
 Result rs = stmt.executeQuery("SELECT imie from Student");
 
-while(rs.netx()) {
+while(rs.next()) {
 	System.out.println(rs.getString("imie");
 }
 ```
@@ -300,3 +307,48 @@ Można również skorzystać z formatu **JSON** .
 <br>
 
 ![](img/java5_2.png)
+
+---
+
+<br>
+
+
+## <a name=bazy1></a>
+**1. Normalizacja baz danych - jej cel i wpływ na wydajność.**
+
+Normalizacja baz danych to proces projektowania bazy danych w taki sposób, aby **zminimalizować powtarzające się dane i zależności funkcyjne** między nimi. Jej celem jest zapewnienie, że baza danych jest spójna, zintegrowana i łatwa do utrzymania.
+
+Normalizacja baz danych ma szereg zalet:
+- Zmniejsza ryzyko niespójności danych.
+- Upraszcza operacje dodawania, odczytu, aktualizacji i zapisu do bazy danych.
+- Pozwala łatwiej pogrupować dane (np. poprzez wyodrębnienie nowych tabel).
+- Zmniejsza ostateczny rozmiar bazy danych poprzez usunięcie duplikatów.
+
+(Mało wyszukany przykład: tabela student i prowadzący, jak mogą wyglądać bez normalizacji, a jak po?)
+
+Trzeba też podkreślić, że celem normalizacji baz danych jest unikanie anomalii:
+- **Redundancja** - ta sama informacja jest niepotrzebnie przechowywana w kilku krotkach
+- **Anomalia modyfikacji** - informacja zostanie zmodyfikowana w pewnych krotkach, a w innych nie. Która informacja jest wówczas prawdziwa?
+- **Anomalia usuwania** - usuwanie części informacji powoduje utratę innej informacji, której nie chcielibyśmy stracić.
+- **Anomalia dołączania** - wprowadzenie pewnej informacji jest możliwe tylko wtedy, gdy jednocześnie wprowadzamy jakąś inną informację, która może być obecnie niedostępna.
+
+Wpływ normalizacji na wydajność zależy od stopnia normalizacji. W niektórych przypadkach, szczególnie gdy baza danych jest bardzo duża, normalizacja może prowadzić do spadku wydajności, ponieważ złożone zapytania wymagają łączenia wielu tabel. W innych przypadkach normalizacja może przyspieszyć wykonywanie zapytań, ponieważ baza danych jest bardziej zorganizowana i zminimalizowane są powtarzające się dane.
+
+---
+
+## <a name=bazy2></a>
+<br>
+
+**2. Klucze główne, obce i wyzwalacze.**
+
+<ins>**Klucz**</ins> - Mówimy, ze zbiór atrybutów ${\{A_1, A_2, . . . , A_n\}}$ tworzy klucz pewnej tabeli, jeśli wszystkie pozostałe atrybuty z tej tabeli są funkcyjnie zależne od wskazanego zbioru. Dwie różne krotki nie mogą mieć tych samych kluczy. 
+
+<ins>**Klucz obcy**</ins> to atrybut lub kombinacja atrybutów w tabeli, który odwołuje się do **klucza głównego lub unikalnego atrybutu w innej tabeli**. Jego celem jest zapewnienie spójności danych i umożliwienie łączenia tabel. Klucz obcy tworzy zależność między tabelami.
+
+Pozwala to na automatyczne dokonywanie zmian w powiązanych tabelach lub uniemożliwia dokonanie zmian naruszających ograniczenia.
+
+<ins>**Wyzwalacze**</ins> to specjalne procedury w języku SQL, które uruchamiają się automatycznie w odpowiedzi na określone zdarzenia w bazie danych. Mogą to być na przykład zmiany danych w tabeli, wstawianie nowych rekordów lub usuwanie istniejących. Wyzwalacze pozwalają na automatyzację określonych czynności i zapewnienie spójności danych w bazie danych.
+
+Przykłady użyć wyzwalaczy:
+- podczas modyfikacji danych: zapisywanie w logach jaki użytkownik zmienił wartość danego atrybutu, o jakim czasie, jaka była stara wartość itp. Któtko mówiąc, służy do **monitorowania** bazy danych,
+- kaskada zdarzeń typu `DELETE` lub `UPDATE`: jak usuwamy jakiś wiersz, to usuwamy odpowiadające mu wiersze w innych tabelach
