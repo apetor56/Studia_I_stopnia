@@ -220,3 +220,64 @@ Działają podobnie jak słowa kluczowe synchronized, ale dają większą swobod
 <br>
 
 **3. Czy Java jest językiem kompilowanym czy interpretowanym?**
+
+Java nie jest językiem kompilowanym oraz nie jest językiem interpretowanym - jest połączeniem tych obu języków.
+
+- najpierw kod źródłowy jest **kompilowany** (polecenie `javac`) do **bytecodu**, który jest niezależny od platformy,
+- następnie JVM **interpretuje** (polecenie `java`) dany bytecode w czasie jego wykonania
+
+To JVM jest dostosowana do każdej platformy, która obsługuje Javę, a nie poszczególne programy.
+
+
+![](./java3.png)
+
+---
+
+<br>
+
+## <a name=java4></a>
+
+**4. Co to JDBC?**
+
+- JDBC (<ins>Java DataBase Conectivity</ins>) jest zbiorem klas i interfejsów używanych do tworzenie aplikacji łączących się z bazami danych.
+- Dostarczana jest przez producentów baz co pozwala na ukrycie kwestii technicznych powiązanych z komunikacją z bazą
+
+Istnieją 2 sposoby łączenia się z bazą danych:
+1. **DriverManager**: napierw wczytujemy sterownik do bazy danych, a następnie za pomocą metody `getConnection` próbujemy uzyskać połączenie z bazą
+
+
+```java
+Class.forName("jdbc.odbc.JdbcOdbcDriver").newInstance();
+
+String url = "jdbc:odbc:bazydanych";
+Connection con = DriverManager.getConnection(url, "login", "haslo");
+```
+
+2. **DataSource**
+
+---
+
+<br>
+
+## <a name=java4></a>
+**5. Co to jest serializacja? Jak zrealizować serializację w Javie?**
+
+Serializacja jest to konwersja stanu obiektu na strumień bajtów. Jest ona wykorzystywana m.in. do **zapisywania stanu obiektu**, w celu jego późniejszego odtworzenia. 
+
+W Javie możemy serializować tylko te obiekty, które implementują interfejs `Serializable`. Nie posiada on żadnych metod do zaimplementowania - służy on tylko do oznaczenia, że klasa może być serializowana.
+
+<br>
+
+Aby zrealizować serializację należy użyć klas `ObjectOutputStream` oraz `ObjectInputStream`. Zapis odbywa się za pomocą metody `writeObject()` a odtwarzenie - za pomocą metody `readObject()`.
+
+<br>
+
+![](java5_1.png)
+
+<br>
+
+Można również skorzystać z formatu **JSON** .
+
+<br>
+
+![](java5_2.png)
