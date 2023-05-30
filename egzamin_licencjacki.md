@@ -115,7 +115,7 @@ public synchronized void funkcja() {
 	... jakies działanie
 }
 
-jest równoważne z 
+// jest równoważne z 
 
 public void funkcja() {
 	synchronized(this) {
@@ -246,7 +246,7 @@ To JVM jest dostosowana do każdej platformy, która obsługuje Javę, a nie pos
 
 **4. Co to JDBC?**
 
-- JDBC (<ins>Java DataBase Conectivity</ins>) jest zbiorem klas i interfejsów używanych do tworzenie aplikacji łączących się z bazami danych.
+- JDBC (<ins>Java DataBase Conectivity</ins>) jest zbiorem klas i interfejsów używanych do tworzenia aplikacji łączących się z bazami danych.
 - Dostarczana jest przez producentów baz co pozwala na ukrycie kwestii technicznych powiązanych z komunikacją z bazą
 
 Istnieją 2 sposoby łączenia się z bazą danych:
@@ -352,3 +352,28 @@ Pozwala to na automatyczne dokonywanie zmian w powiązanych tabelach lub uniemo�
 Przykłady użyć wyzwalaczy:
 - podczas modyfikacji danych: zapisywanie w logach jaki użytkownik zmienił wartość danego atrybutu, o jakim czasie, jaka była stara wartość itp. Któtko mówiąc, służy do **monitorowania** bazy danych,
 - kaskada zdarzeń typu `DELETE` lub `UPDATE`: jak usuwamy jakiś wiersz, to usuwamy odpowiadające mu wiersze w innych tabelach
+
+---
+
+<br>
+
+## <a name=bazy3></a>
+**3. Transakcje i zasady ASID.**
+
+**<ins>Transakcja</ins>**: sekwencja pewnych operacji na bazie danych, gdzie przeprowadza bazę danych z jednego **spójnego stanu** w **inny spójny stan**. Transakcje muszę przestrzegać zasady ACID.
+
+Spójność bazy danych polega na tym, że serwer przechowujący bazę danych **musi** zwrócić **taką samą odpowiedź** na dane zapytanie, gdyby zadać je w tym samym momencie.
+
+W przypadku *pojedynczego użytkownika*: chcemy uważać na pewne wrażliwe dane, więc użycie transakcji polega na możliwości przywrócenia bazy danych do poprzedniego stanu w przypadku gdy wystąpi jakiś błąd albo szkodliwe działanie.
+
+Natomiast w *systemach wielodostępnych* różne procesy klienckie nie mogą się ze sobą kłócić.
+
+**<ins>Zasady ACID</ins>**: zbiór reguł, które określają, jak powinny działać transakcje.
+- **Atomicity (Atomowość)**: transakcja ma być wykonana w całości, albo wcale,
+- **Consistency (Spójność)**: transakcja musi zachować spójność bazy danych,
+- **Isolation (Izolacja)**: jedna transakcja nie może widzieć wyników działania innej, *niezatwierdzonej* transakcji - wszystkie transakcje są dla siebie niewidoczne,
+- **Durability (Trwałość)**: zmiany wprowadzane przez transakcje muszą być trwałe, niezależnie od późniejszych błędów sprzętu lub oprogramowania
+
+Transakcje i zasady ASID są niezbędne do utrzymywania spójności dużych baz danych, w których zapytania i transakcje wykonywane są równolegle przez wielu użytkowników.
+
+---
