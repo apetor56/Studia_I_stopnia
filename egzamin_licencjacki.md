@@ -13,6 +13,11 @@
 [2. Klucze główne, obce i wyzwalacze.](#bazy2) <br>
 [3. Transakcje i zasady ASID.](#bazy3) <br>
 
+### **Język Python**
+[1. Programowanie obiektowe w języku Python.](#pyhton1) <br>
+[2. Tworzenie i korzystanie z wyjątków w języku Python.](#python2) <br>
+[3. Type zmienne i niezmienne, hashowalne i niehashowalne w Pythonie.](#python3) <br>
+
 ---
 
 <br>
@@ -377,3 +382,87 @@ Natomiast w *systemach wielodostępnych* różne procesy klienckie nie mogą si�
 Transakcje i zasady ASID są niezbędne do utrzymywania spójności dużych baz danych, w których zapytania i transakcje wykonywane są równolegle przez wielu użytkowników.
 
 ---
+
+<br>
+
+## <a name=python1></a>
+**1. Programowanie obiektowe w języku Python.**
+
+W języku Python możemy korzystać z paradygmatu programowania obiektowego, które pozwala nam na zebranie pewnych cech i zachowań w jedną całość (klasę).
+
+- **Dziedziczenie** – używanie przez klasę pewnych funkcjonalności z innych klas.​
+- **Polimorfizm** – przejawia się w różnym sposobie działania na przykład metod w zależności jaki obiekt je wywoła.​
+- **Hermetyzacja (enkapsulacja)** - łączenie danych i metod w pojedynczą jednostkę czyli klasę.​
+- **Abstrakcja** – forma uproszczenia problemu, która polega na korzystaniu z uproszczonego zestawu cech danego obiektu, niezależnie od szczegółowej implementacji.
+
+*Konstrukcja typowej klasy w Pythonie:*
+```python
+class Debil:
+	def __init__(self, imie, nazwisko):
+		self.imie = imie
+		self.nazwisko = nazwisko
+		self.__prywatna = "klasa potomna tego nie widzi"
+		self._chroniona = "klasy potomne to widzią"
+
+	def __str__(self):
+		return self.imie + " " + self.nazwisko
+
+	def __del__(self):
+		print("Skasuje gnojka")
+
+	def jakas_funkcja(str):
+		print(str)
+
+# dziedziczenie
+
+class Student(Debil, ...):
+	def jakas_fukcja(str = "student"):
+		super().jakas_funkcja(str)
+
+```
+
+*Mechanizm abstrakcji*
+```python
+from abc import ABC, abstractmethod
+class Zwierze(ABC):
+    def __init__(self, nazwa, wiek, waga):
+        self.nazwa = nazwa
+        self.wiek = wiek
+        self.waga = waga
+        
+    @abstractmethod # tutaj wymuszamy implementację tej metody w klasach pochodnych
+    def nazwa_gatunku(self): 
+        pass
+```
+
+---
+
+<br>
+
+<a name="python2"></a>
+**2. Tworzenie i korzystanie z wyjątków w języku Python.**
+
+Wyjątki to zdarzenia, które najczęściej informują nas o pojawieniu się jakiegoś błędu działania naszego programu. Przechwytywanie wyjątków umożliwia nam zmianę przebiegu programu.
+
+- `raise`: ręczne wywołanie wyjątku,
+- `try/except/else/finally`: przechwytywanie i obsługiwanie wyjątku
+
+Tworzenie własnych wyjątków polega na utworzeniu klasy, która dziedziczy po klasie `Exception`.
+
+*Przykład*
+
+```python
+class AgeException(Exception):
+	pass
+
+number = 18
+
+try:
+		input_num = int(input("Podaj wiek"))
+		if input_num < number:
+			raise AgeException
+		else:
+			pass
+except AgeException:
+	print("Nieodpowiedni wiek")
+```
