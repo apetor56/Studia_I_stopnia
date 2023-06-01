@@ -458,11 +458,11 @@ class AgeException(Exception):
 number = 18
 
 try:
-		input_num = int(input("Podaj wiek"))
-		if input_num < number:
-			raise AgeException
-		else:
-			pass
+	input_num = int(input("Podaj wiek"))
+	if input_num < number:
+		raise AgeException
+	else:
+		pass
 except AgeException:
 	print("Nieodpowiedni wiek")
 ```
@@ -496,6 +496,31 @@ finally:                 # działania końcowe
     instrukcje
 ```
 
-- Jeżeli podczas wykonywania bloku try nie wystapił wyjątek, to będzie wykonany blok finally, a następnie instrukcje pod instrukcją try.
+- Jeżeli podczas wykonywania bloku `try` nie wystapił wyjątek, to będzie wykonany blok `finally`, a następnie instrukcje pod instrukcją `try`.
 
-- Jeżeli podczas wykonywania bloku try wystapił wyjątek, to będzie wykonany blok finally, ale potem wyjątek będzie przekazany wyżej. 
+- Jeżeli podczas wykonywania bloku `try` wystapił wyjątek, to będzie wykonany blok `finally`, ale potem wyjątek będzie przekazany wyżej. 
+
+---
+
+<br>
+
+## <a name="python2"></a>
+
+**3. Type zmienne i niezmienne, hashowalne i niehashowalne w Pythonie.**
+
+<br>
+
+- **Typy zmienne (mutable)** - obiekty o tych typach <ins>można zmieniać po stworzeniu</ins>, czyli podmieniać elementy, usuwać. Do takich typów należą: listy, słowniki, zbiory.
+
+- **Typy niezmienne(immutable)** - po utworzeniu obiektów tych typów <ins>nie możemy zmieniać</ins> tych obiektów. Do takich typów należą: `string`, krotka.
+
+- **Hashowanie**  - to obliczanie liczby na bazie obiektu. Nie zmienia się ona przez cały czas życia obiektu. Elementy hashowlane to takie, na których można użyć funkcji `hash()` i nie spowoduje to wyjątku.
+
+```python
+>>> hash("marek kucmerka")
+1765585351019521735
+```
+
+- **Typy hashowalne** – to takie na których można wywołać funkcje `hash()` przykład: typy niezmienne​
+
+- **Typy niehashowalne** – to takie które nie mają hasha (nie można na nich wywołać funkcji `hash()`): listy, słowniki
