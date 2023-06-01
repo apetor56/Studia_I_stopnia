@@ -504,7 +504,7 @@ finally:                 # działania końcowe
 
 <br>
 
-## <a name="python2"></a>
+## <a name="python3"></a>
 
 **3. Type zmienne i niezmienne, hashowalne i niehashowalne w Pythonie.**
 
