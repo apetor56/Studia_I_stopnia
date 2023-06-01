@@ -449,7 +449,7 @@ Wyjątki to zdarzenia, które najczęściej informują nas o pojawieniu się jak
 
 Tworzenie własnych wyjątków polega na utworzeniu klasy, która dziedziczy po klasie `Exception`.
 
-*Przykład*
+*Przykład 1*
 
 ```python
 class AgeException(Exception):
@@ -466,3 +466,36 @@ try:
 except AgeException:
 	print("Nieodpowiedni wiek")
 ```
+
+*Przykład 2*
+
+```python
+try:
+    instrukcje            # podstawowe działanie instrukcji
+
+except ExceptionClass1:   # przechwytuje wskazany wyjątek
+    instrukcje
+
+except (ExceptionClass2, ExceptionClass3): 		# przechwytuje wymienione wyjątki
+    instrukcje
+
+except ExceptionClass4 as exception1: 			# przechwytuje wyjątek i jego instancję
+    print(exception1.jakas_wartosc)
+	exception1.zrob_cos()
+
+except (ExceptionClass5, ExceptionClass6) as exception2: # przechwytuje wyjątki i instancję
+    instrukcje
+
+except:                  # przechwytuje wszystkie (pozostałe) wyjątki
+    instrukcje
+
+else:                    # działania przy braku zgłoszenia wyjątku
+    instrukcje
+
+finally:                 # działania końcowe
+    instrukcje
+```
+
+- Jeżeli podczas wykonywania bloku try nie wystapił wyjątek, to będzie wykonany blok finally, a następnie instrukcje pod instrukcją try.
+
+- Jeżeli podczas wykonywania bloku try wystapił wyjątek, to będzie wykonany blok finally, ale potem wyjątek będzie przekazany wyżej. 
