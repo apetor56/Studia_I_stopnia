@@ -18,6 +18,11 @@
 [2. Tworzenie i korzystanie z wyjątków w języku Python.](#python2) <br>
 [3. Type zmienne i niezmienne, hashowalne i niehashowalne w Pythonie.](#python3) <br>
 
+### **Język C++**
+[1. Co to jest konstruktor i destruktor?](#cpp1) <br>
+[2. Jakie znasz typy dziedziczenia?](#cpp2) <br>
+[3. Podaj przykład kontenerów sekwencyjnych.](#cpp3) <br>
+
 ---
 
 <br>
@@ -524,3 +529,17 @@ finally:                 # działania końcowe
 - **Typy hashowalne** – to takie na których można wywołać funkcje `hash()` przykład: typy niezmienne​
 
 - **Typy niehashowalne** – to takie które nie mają hasha (nie można na nich wywołać funkcji `hash()`): listy, słowniki
+
+---
+
+<br>
+
+## <a name="cpp1"></a>
+
+**1. Co to jest konstruktor i destruktor?**
+
+<ins>Konstruktor</ins>:
+- specjalna metoda klasy, musi mieć tę samą nazwę co klasa,
+- uruchamiany jest podczas tworzenia obiektu,
+- pozwala na inicjalizację wartości zmiennych/obietków w trakcie tworzenia instancji klasy (konieczne przy referencjach i zmiennych `const`),
+- poza zwykłym konstruktorem wyróżniamy również konstruktory kopiujące i przenoszące
