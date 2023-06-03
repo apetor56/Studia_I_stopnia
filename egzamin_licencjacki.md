@@ -11,7 +11,7 @@
 ### **Bazy danych**
 [1. Normalizacja baz danych - jej cel i wpływ na wydajność.](#bazy1) <br>
 [2. Klucze główne, obce i wyzwalacze.](#bazy2) <br>
-[3. Transakcje i zasady ASID.](#bazy3) <br>
+[3. Transakcje i zasady ACID.](#bazy3) <br>
 
 ### **Język Python**
 [1. Programowanie obiektowe w języku Python.](#pyhton1) <br>
@@ -368,7 +368,7 @@ Przykłady użyć wyzwalaczy:
 <br>
 
 ## <a name=bazy3></a>
-**3. Transakcje i zasady ASID.**
+**3. Transakcje i zasady ACID.**
 
 **<ins>Transakcja</ins>**: sekwencja pewnych operacji na bazie danych, gdzie przeprowadza bazę danych z jednego **spójnego stanu** w **inny spójny stan**. Transakcje muszę przestrzegać zasady ACID.
 
@@ -384,7 +384,7 @@ Natomiast w *systemach wielodostępnych* różne procesy klienckie nie mogą si�
 - **Isolation (Izolacja)**: jedna transakcja nie może widzieć wyników działania innej, *niezatwierdzonej* transakcji - wszystkie transakcje są dla siebie niewidoczne,
 - **Durability (Trwałość)**: zmiany wprowadzane przez transakcje muszą być trwałe, niezależnie od późniejszych błędów sprzętu lub oprogramowania
 
-Transakcje i zasady ASID są niezbędne do utrzymywania spójności dużych baz danych, w których zapytania i transakcje wykonywane są równolegle przez wielu użytkowników.
+Transakcje i zasady ACID są niezbędne do utrzymywania spójności dużych baz danych, w których zapytania i transakcje wykonywane są równolegle przez wielu użytkowników.
 
 ---
 
@@ -543,3 +543,225 @@ finally:                 # działania końcowe
 - uruchamiany jest podczas tworzenia obiektu,
 - pozwala na inicjalizację wartości zmiennych/obietków w trakcie tworzenia instancji klasy (konieczne przy referencjach i zmiennych `const`),
 - poza zwykłym konstruktorem wyróżniamy również konstruktory kopiujące i przenoszące
+
+*Przykład*:
+
+```c++
+class Student {
+public:
+	// kompilator dostarcza implementację domyślnego konstruktora
+	Student() = default
+
+	// konstruktor z argumentami
+	Student(std::string imie, std::string nazwisko) :
+		m_imie(imie),
+		m_nazwisko(nazwisko)
+	{
+		std::cout << "Cokolwiek\n" << '\n';
+	}
+
+	// konstruktor kopiujący
+	Student(const Student& inny) {
+		// kopiowanie zasobów - uwaga na pamięć przydzieloną na stercie
+	}
+
+	// konstruktor przenoszący
+	Student(Student&& inny) {
+		// 'przenoszenie' zasobów - najczęściej przepinanie samych wskaźników
+		// wskaźniki starego obiektu przepinane są najczęściej na nullptr
+	}
+
+private:
+	std::string m_imie;
+	std::string m_nazwisko;
+};
+```
+
+<ins>Desktuktor</ins>:
+- mechanizm uruchamiany podczas niszczenia obiektu,
+- nie może przyjmować żadnych argumentów,
+- ma tę samą nazwę co klasa, lecz poprzedza go jeszcze znak tyldy `~`,
+- wykorzystywany do zwalniania zaalokowanych dynamicznie zasobów, zamykanie plików itp.,
+- destruktory wywoływane są w odwrotnej kolejności do tworzenia obiektu - jeśli utworzono obiekty `A`, `B`, `C` w takiej kolejności jak podano, to zostanie najpierw wywołany destruktor obiektu `C`, potem `B`, a na końcu `A`,
+- przy dziedziczeniu należy pamiętać o słowie kluczowym `virtual`
+
+*Przykład*:
+```c++
+class Student {
+public:
+	~Student() {
+		delete m_cokolwiek;
+	}
+};
+```
+
+---
+
+<br>
+
+## <a name="cpp2"></a>
+
+**2. Jakie znasz typy dziedziczenia?**
+
+<ins>**Sposoby** dziedziczenia:</ins>
+
+![](img/cpp2.png)
+
+<br>
+
+<ins>**Typy** dziedziczenia:</ins>
+
+<ins>**Pojedyncze**</ins>: klasa dziedziczy **tylko po jednej** klasie bazowej:
+
+```c++
+class Animal {
+public:
+	Animal(int age) : m_age(age) {}
+
+	int getAge() const {
+		return m_age;
+	} 
+
+protected:
+	int m_age;
+};
+
+class ZyzuśTłuścioch : public Animal {
+public:
+	void ugryź() {}
+};
+```
+
+<br>
+
+<ins>**Wielokrotne**</ins>: klasa dziedziczy **po wielu** klasach bazowych. Jeśli klasy po których dziedziczymy mają te same nazwy składowych to musimy się do nich bezpośrednio odwołać (ponieżej `Car::m_model` i `Plane::m_model`) lub skorzystać z odziedziczonych funkcji:
+
+```c++
+class Car {
+public:
+	std::string m_model;
+
+	Car(std::string model) : m_model(model) {}
+
+	void drive() {
+		std::cout << m_model << '\n';
+	}
+};
+
+class Plane {
+public:
+	std::string m_model;
+
+	Plane(std::string model) : m_model(model) {}
+
+	void fly() {
+		std::cout << m_model << '\n';
+	}
+};
+
+class FlyingCar : public Car, public Plane {
+public:
+	FlyingCar() : Car("dżaguar"), Plane("helikopter szturmowy") {}
+
+    std::string& car_model = Car::m_model;
+    std::string& plane_model = Plane::m_model;
+
+	void print() {
+		std::cout << car_model << ' ' << plane_model << '\n';
+	}
+};
+
+----------------------------------------------------------------------
+
+int main() {
+    FlyingCar fc;
+    fc.print();
+    fc.drive();
+    fc.fly();
+}
+```
+```
+dżaguar helikopter szturmowy
+dżaguar
+helikopter szturmowy
+```
+
+<br>
+
+<ins>**Przechodnie**</ins>: jedna klasa dziedziczy z innej klasy, a następnie inna klasa dziedziczy z poprzedniej klasy pochodnej: `A -> B -> C`.
+
+Przykład: mamy klasę bazową `Animal`. Następnie tworzymy klasę pochodną `Dog`, a po niej tworzymy kolejną klasę pochodną, okręślającą rasę psa, np `Mudi`.
+
+<br>
+
+<ins>**Hierarchiczne**</ins>: kilka klas dziedziczy z jednej klasy bazowej:
+
+```c++
+class Shape() {
+public:
+	virtual void draw() = 0;
+}
+
+class Triangle : public Shape {
+public:
+	void draw() override {
+		// draw triangle...
+	}
+
+private:
+	std::array<pos2D, 3> m_vertices;
+}
+
+class Circle : public Shape {
+public:
+	void draw() override {
+		// draw circle ...
+	}
+
+private:
+	pos2D m_centre;
+	float m_radius;
+}
+```
+
+<br>
+
+<ins>**Hybrydowe**</ins>: jest to połączenie powyższych sposobów dziedziczenia, np. pojedyncze z hierarchicznym, wielokrotne z przechodnim itp.
+
+---
+
+<br>
+
+## <a name="cpp3"></a>
+**3. Podaj przykład kontenerów sekwencyjnych.**
+
+<ins>`std::vector`</ins>:
+- możliwość dynamicznego zmieniania rozmiaru kontenera,
+- elementy przechowywane są w sposób ciągły,
+- elektywne wstawianie i usuwanie elementów na końcu wektora,
+- można wstawiać elementy na początek i w środku, lecz wiąże się to z przesunięciem innych elementów,
+- szybki dostęp do elementów poprzez indeksy
+
+<ins>`std::list`</ins>:
+- wstawianie elementów w czasie stałym (`iterator insert (const_iterator position, const value_type& val)`),
+- elementy nie są przechowywane w sposób ciągły,
+- nie ma szybkiego dostępu do elementów (brak indeksowania)
+
+<ins>`std::array`</ins>:
+- rozmiar jest znany w trakcie kompilacji,
+- elementy przechowywane są w sposób ciągły,
+- nie wspiera usuwania lub dodawania elementów,
+- elementy można "usunąć" za pomocą `std::remove()` - funkcja ta przesuwa iterator usuwanego elementu, zwraca nowy iterator oznaczający koniec kontenera, a usunięty element nie znajduje się w zakresie [`begin`, `new_end`)
+
+<ins>`std::deque`</ins>:
+- stały czas usuwania i dodawania elementów po obu końcach kolejki,
+- szybki dostęp do elementów poprzez indeksowanie (tak na prawdę pod maską działa podwójne indeksowanie ze względu na dostęp do bloku, a następnie do elementu),
+- elementy nie są przechowywane w sposób ciągły - tworzone są osobne tablice o stałym rozmiarze, które są ze sobą powiązane
+- w przeciwieństwie do vectora nie musi realokować wszystkich elementów kiedy dodawany element przekroczy rozmiar kontenera - tworzony jest nowy blok pamięci, w którym umieszczamy element
+
+<div align="center">
+	<br>
+	<img src=img/cpp3.png>
+</div>
+
+---
