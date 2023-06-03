@@ -830,7 +830,7 @@ Graf $G = (V, E)$ nazywamy dwudzielnym, jeśli istnieją rozłączne zbiory $V_1
 
 Zbiór wierzchołków z $V_2$ połączonych z wierzchołkami podzbioru $W \subseteq V_1$ oznaczamy $\Phi_E(W)$, formalnie:
 
-$$ \Phi_E(W) = \{ v \in V_2 : \exist w \in W : wv \in E \} $$
+$$ \Phi_E(W) = \{ v \in V_2 : \exists w \in W : wv \in E \} $$
 
 <div align="center">
 	<br>
