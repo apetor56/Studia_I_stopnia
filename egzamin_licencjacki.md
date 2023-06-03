@@ -107,7 +107,6 @@ public class Rower implements Pojazd {
 
 ## <a name=java2></a>
 ### **2. Proszę omówić dostępne sposoby synchronizacji wątków w Javie.**
-<br>
 
 ### *<ins>1. Synchronizacja całej metody</ins>*
 <br>
