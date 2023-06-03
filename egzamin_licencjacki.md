@@ -1,5 +1,9 @@
 # **Egzamin licencjacki - opracowanie pytań**
 
+### Do lepszego ogarnięcia/zrobienia:
+- java: JDBC,
+- dyskretna: dodać algorytm łączenia w pary
+
 ### **Java**
 
 [1. Co to jest klasa abstrakcyjna i interfejs w Javie.](#java1) <br>
@@ -23,15 +27,20 @@
 [2. Jakie znasz typy dziedziczenia?](#cpp2) <br>
 [3. Podaj przykład kontenerów sekwencyjnych.](#cpp3) <br>
 
+### **Matematyka dyskretna**
+[1. Twierdzenie Halla i algorytm łączenia w pary.](#md1) <br>
+[2. Omów metody obliczania sum skończonych.](#md2) <br>
+[3. Trójkąt Stirlinga (dla podziałów) i liczby Bella.](#md3) <br>
+
 ---
 
 <br>
 
 ## <a name=java1></a>
-**1. Co to jest klasa abstrakcyjna i interfejs w Javie.**
+### **1. Co to jest klasa abstrakcyjna i interfejs w Javie.**
 <br>
 
-**Klasa abstakcyjna**:
+### **Klasa abstakcyjna**:
 - klasa, których obiektów nie możemy tworzyć,
 - służy do definiowania cech i zachowań, które są dziedziczone przez jej klasy pochodne,
 - jeśli któraś z jej metod jej abstakcyjna, to pochodne klasy muszą ją zaimplementować,
@@ -55,7 +64,7 @@ public abstract class Emeryt {
 ```
 <br>
 
-**Interfejs**:
+### **Interfejs**:
 - określa, co implementująca go klasa musi robić, ale nie wskazuje w jaki sposób,
 - może zawierać stałe składowe, jak i zmienne,
 - metody zazwyczaj deklaruje się bez podawania żadnego kodu,
@@ -97,10 +106,11 @@ public class Rower implements Pojazd {
 <br>
 
 ## <a name=java2></a>
-**2. Proszę omówić dostępne sposoby synchronizacji wątków w Javie.**
+### **2. Proszę omówić dostępne sposoby synchronizacji wątków w Javie.**
 <br>
 
-*<ins>1. Synchronizacja całej metody</ins>*
+### *<ins>1. Synchronizacja całej metody</ins>*
+<br>
 
 W danym momencie tylko jedna metoda oznaczona jako `synchronized` może być wykonana przez tylko jeden wątek. Blokada następuje na podstawie obiektu, który wywołał daną metodę.
 
@@ -133,8 +143,10 @@ public void funkcja() {
 	}
 }
 ```
+<br>
 
-*<ins>2. Synchronizacja na poziomie instrukcji</ins>*
+### *<ins>2. Synchronizacja na poziomie instrukcji</ins>*
+<br>
 
 Działa podobnie jak powyższa metoda, lecz tutaj możemy synchronizować <ins>fragmenty</ins> danej metody, a nie całe ciało oraz do synchronizacji nie musimy koniecznie używać obiektu, który wywołuje daną metodę, lecz dowolny obiekt (najczęściej `Object`).
 
@@ -161,7 +173,10 @@ public class Counter {
 
 Jeśli `lock` jest zajęty przez jeden wątek, to inne wątki nie będą mogły wykonać metod, do których synchronizacji wykorzystano ten właśnie obiekt.
 
-*<ins>3. Blokada drobnoziarnista</ins>*
+<br>
+
+### *<ins>3. Blokada drobnoziarnista</ins>*
+<br>
 
 Przykład z dwoma licznikami w jednej klasie - nie używamy ich obu wspólnie, więc nie chcemy blokować drugiego licznika, gdy modyfikujemy pierwszy. W tym celu tworzymy dwa obiekty, które będą nam służyły na locki.
 
@@ -187,13 +202,19 @@ public class DoubleCounter {
 }
 ```
 
-*<ins>4. Operacje atomowe - volatile</ins>*
+<br>
+
+### *<ins>4. Operacje atomowe - volatile</ins>*
+<br>
 
 Operacja atomowa to taka, która nie może zatrzymać się pośrodku - albo się wykonuje całkowicie, albo wcale. Na ogół dostęp do zmiennych/referencji nie jest realizowany jako pojedyncza operacja, więc aby wszystkie te operacje były atomowe, to taką zmienną należy zadeklarować jako `volatile`.
 
 Atomowe są tylko operacje odczytu i zapisu.
 
-*<ins>5. wait() i notify()</ins>*
+<br>
+
+### *<ins>5. wait() i notify()</ins>*
+<br>
 
 W momencie gdy wątek musi poczekać, aż inny wątek wykona określoną część swoich zadań stosuje się mechanizm czekania i powiadamiania.
 
@@ -221,7 +242,10 @@ public synchronized produce() {
 }
 ```
 
-*<ins>6. Obiekt Lock</ins>*
+<br>
+
+### *<ins>6. Obiekt Lock</ins>*
+<br>
 
 Działają podobnie jak słowa kluczowe synchronized, ale dają większą swobodę.
 
@@ -236,7 +260,8 @@ Działają podobnie jak słowa kluczowe synchronized, ale dają większą swobod
 ## <a name=java3></a>
 <br>
 
-**3. Czy Java jest językiem kompilowanym czy interpretowanym?**
+### **3. Czy Java jest językiem kompilowanym czy interpretowanym?**
+<br>
 
 Java nie jest językiem kompilowanym oraz nie jest językiem interpretowanym - jest połączeniem tych obu języków.
 
@@ -254,7 +279,8 @@ To JVM jest dostosowana do każdej platformy, która obsługuje Javę, a nie pos
 
 ## <a name=java4></a>
 
-**4. Co to JDBC?**
+### **4. Co to JDBC?**
+<br>
 
 - JDBC (<ins>Java DataBase Conectivity</ins>) jest zbiorem klas i interfejsów używanych do tworzenia aplikacji łączących się z bazami danych.
 - Dostarczana jest przez producentów baz co pozwala na ukrycie kwestii technicznych powiązanych z komunikacją z bazą
@@ -296,7 +322,8 @@ while(rs.next()) {
 <br>
 
 ## <a name=java5></a>
-**5. Co to jest serializacja? Jak zrealizować serializację w Javie?**
+### **5. Co to jest serializacja? Jak zrealizować serializację w Javie?**
+<br>
 
 Serializacja jest to konwersja stanu obiektu na strumień bajtów. Jest ona wykorzystywana m.in. do **zapisywania stanu obiektu**, w celu jego późniejszego odtworzenia. 
 
@@ -324,7 +351,8 @@ Można również skorzystać z formatu **JSON** .
 
 
 ## <a name=bazy1></a>
-**1. Normalizacja baz danych - jej cel i wpływ na wydajność.**
+### **1. Normalizacja baz danych - jej cel i wpływ na wydajność.**
+<br>
 
 Normalizacja baz danych to proces projektowania bazy danych w taki sposób, aby **zminimalizować powtarzające się dane i zależności funkcyjne** między nimi. Jej celem jest zapewnienie, że baza danych jest spójna, zintegrowana i łatwa do utrzymania.
 
@@ -349,7 +377,8 @@ Wpływ normalizacji na wydajność zależy od stopnia normalizacji. W niektóryc
 ## <a name=bazy2></a>
 <br>
 
-**2. Klucze główne, obce i wyzwalacze.**
+### **2. Klucze główne, obce i wyzwalacze.**
+<br>
 
 <ins>**Klucz**</ins> - Mówimy, ze zbiór atrybutów ${\{A_1, A_2, . . . , A_n\}}$ tworzy klucz pewnej tabeli, jeśli wszystkie pozostałe atrybuty z tej tabeli są funkcyjnie zależne od wskazanego zbioru. Dwie różne krotki nie mogą mieć tych samych kluczy. 
 
@@ -368,7 +397,8 @@ Przykłady użyć wyzwalaczy:
 <br>
 
 ## <a name=bazy3></a>
-**3. Transakcje i zasady ACID.**
+### **3. Transakcje i zasady ACID.**
+<br>
 
 **<ins>Transakcja</ins>**: sekwencja pewnych operacji na bazie danych, gdzie przeprowadza bazę danych z jednego **spójnego stanu** w **inny spójny stan**. Transakcje muszę przestrzegać zasady ACID.
 
@@ -391,7 +421,8 @@ Transakcje i zasady ACID są niezbędne do utrzymywania spójności dużych baz 
 <br>
 
 ## <a name=python1></a>
-**1. Programowanie obiektowe w języku Python.**
+### **1. Programowanie obiektowe w języku Python.**
+<br>
 
 W języku Python możemy korzystać z paradygmatu programowania obiektowego, które pozwala nam na zebranie pewnych cech i zachowań w jedną całość (klasę).
 
@@ -445,7 +476,8 @@ class Zwierze(ABC):
 <br>
 
 <a name="python2"></a>
-**2. Tworzenie i korzystanie z wyjątków w języku Python.**
+### **2. Tworzenie i korzystanie z wyjątków w języku Python.**
+<br>
 
 Wyjątki to zdarzenia, które najczęściej informują nas o pojawieniu się jakiegoś błędu działania naszego programu. Przechwytywanie wyjątków umożliwia nam zmianę przebiegu programu.
 
@@ -511,7 +543,7 @@ finally:                 # działania końcowe
 
 ## <a name="python3"></a>
 
-**3. Type zmienne i niezmienne, hashowalne i niehashowalne w Pythonie.**
+### **3. Type zmienne i niezmienne, hashowalne i niehashowalne w Pythonie.**
 
 <br>
 
@@ -536,7 +568,8 @@ finally:                 # działania końcowe
 
 ## <a name="cpp1"></a>
 
-**1. Co to jest konstruktor i destruktor?**
+### **1. Co to jest konstruktor i destruktor?**
+<br>
 
 <ins>Konstruktor</ins>:
 - specjalna metoda klasy, musi mieć tę samą nazwę co klasa,
@@ -601,7 +634,8 @@ public:
 
 ## <a name="cpp2"></a>
 
-**2. Jakie znasz typy dziedziczenia?**
+### **2. Jakie znasz typy dziedziczenia?**
+<br>
 
 <ins>**Sposoby** dziedziczenia:</ins>
 
@@ -733,7 +767,8 @@ private:
 <br>
 
 ## <a name="cpp3"></a>
-**3. Podaj przykład kontenerów sekwencyjnych.**
+### **3. Podaj przykład kontenerów sekwencyjnych.**
+<br>
 
 <ins>`std::vector`</ins>:
 - możliwość dynamicznego zmieniania rozmiaru kontenera,
@@ -765,3 +800,48 @@ private:
 </div>
 
 ---
+
+<br>
+
+## <a name="md1"></a>
+
+### **1. Twierdzenie Halla i algorytm łączenia w pary.**
+<br>
+
+<ins>**Graf dwudzielny**</ins> - graf, którego zbiór wierzchołków można podzielić na dwa rozłączne 
+zbiory tak, że krawędzie nie łączą wierzchołków tego samego zbioru. Równoważnie: graf, 
+który nie zawiera cykli nieparzystej długości.
+
+*Fancy definicja:*
+
+Graf $G = (V, E)$ nazywamy dwudzielnym, jeśli istnieją rozłączne zbiory $V_1, V_2$ takie, że $V_1 \cup V_2 = V$ oraz jeśli $e \in E$ łączy wierzchołki $v$ i $w$, to jeden z nich należy do $V_1$ a drugi do $V_2$.
+
+<div align="center">
+	<br>
+	<img src=img/md1_1.png>
+</div>
+
+<br>
+<br>
+
+<ins>**Skojarzenie**</ins> - to dowolny podzbiór krawędzi $F \subseteq E$, które nie mają tych samych końców.
+
+<ins>**Pełne skojarzenie**</ins> - takie skojarzenie, gdzie z każdego wierzchołka $v \in V_1$ wychodzi krawędź.
+
+Zbiór wierzchołków z $V_2$ połączonych z wierzchołkami podzbioru $W \subseteq V_1$ oznaczamy $\Phi_E(W)$, formalnie:
+
+$$ \Phi_E(W) = \{ v \in V_2 : \exist w \in W : wv \in E \} $$
+
+<div align="center">
+	<br>
+	<img src=img/md1_2.png>
+</div>
+
+<br>
+
+## Twierdzenie Halla:
+
+Niech $G = (V_1 \cup V_2, E)$ będzie grafem dwudzielnym. Wówczas pełne skojarzenie $V_1$ z $V_2$ istnieje wtedy i tylko wtedy, gdy $|W| \leq \Phi_E(W)$ dla każdego podzbioru $W \subseteq V_1$.
+
+### Wersja dla debila:
+W grupie kobiet każda może wybrać męża spośród mężczyzn, których zna, wtedy i tylko wtedy, gdy w każdym podzbiorze kobiet o liczności $k$ kobiety te znają co najmniej $k$ mężczyzn.
