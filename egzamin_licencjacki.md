@@ -107,6 +107,7 @@ public class Rower implements Pojazd {
 
 ## <a name=java2></a>
 ### **2. Proszę omówić dostępne sposoby synchronizacji wątków w Javie.**
+<br>
 
 ### *<ins>1. Synchronizacja całej metody</ins>*
 <br>
@@ -840,7 +841,35 @@ $$ \Phi_E(W) = \{ v \in V_2 : \exists w \in W : wv \in E \} $$
 
 ## Twierdzenie Halla:
 
-Niech $G = (V_1 \cup V_2, E)$ będzie grafem dwudzielnym. Wówczas pełne skojarzenie $V_1$ z $V_2$ istnieje wtedy i tylko wtedy, gdy $|W| \leq \Phi_E(W)$ dla każdego podzbioru $W \subseteq V_1$.
+Niech $G = (V_1 \cup V_2, E)$ będzie grafem dwudzielnym. Wówczas pełne skojarzenie $V_1$ z $V_2$ istnieje wtedy i tylko wtedy, gdy $|W| \leq |\Phi_E(W)|$ dla każdego podzbioru $W \subseteq V_1$.
 
 ### Wersja dla debila:
 W grupie kobiet każda może wybrać męża spośród mężczyzn, których zna, wtedy i tylko wtedy, gdy w każdym podzbiorze kobiet o liczności $k$ kobiety te znają co najmniej $k$ mężczyzn.
+
+---
+
+<br>
+
+## <a name="md2"></a>
+
+### **2. Omów metody obliczania sum skończonych.**
+<br>
+
+### <ins>Sposób 1</ins>
+**Odgadnięcie rozwiązania i udowodnienie go przez indukcję**:
+- przeważnie trudne/niemożliwe,
+- przydatna przy sprawdzaniu rozwiązania innymi metodami
+
+<br>
+
+### <ins>Sposób 2</ins>
+**Przeindeksowanie sumy**:
+- próba uproszczenia sumy poprzez zmianę dodawania składników (kolejność indeksów)
+
+*Przykład: suma ciągu arytmetycznego*
+
+$$
+S = \sum_{k=0}^{n}(a + kr) = \sum_{k=0}^{n}(a + (n - k)r) = \sum_{k=0}^{n}(a + rn - rk) \\
+\sum_{k=0}^{n}(a + rn - rk) + \sum_{k=0}^{n}(a + kr) = \sum_{k=0}^{n}(2a+rn) = 2S \\
+a, r, n \backsim const \Rightarrow S = {(2a + rn)(n + 1) \over 2}
+$$
