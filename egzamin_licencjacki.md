@@ -869,7 +869,15 @@ W grupie kobiet każda może wybrać męża spośród mężczyzn, których zna, 
 *Przykład: suma ciągu arytmetycznego*
 
 $$
+\begin{gather*}
 S = \sum_{k=0}^{n}(a + kr) = \sum_{k=0}^{n}(a + (n - k)r) = \sum_{k=0}^{n}(a + rn - rk) \\
-\sum_{k=0}^{n}(a + rn - rk) + \sum_{k=0}^{n}(a + kr) = \sum_{k=0}^{n}(2a+rn) = 2S \\
-a, r, n \backsim const \Rightarrow S = {(2a + rn)(n + 1) \over 2}
+2S = \sum_{k=0}^{n}(a + rn - rk) + \sum_{k=0}^{n}(a + kr) = \sum_{k=0}^{n}(2a+rn) \\
+a, r, n \backsim const \Rightarrow 2S = (2a + rn) \sum_{k=0}^{n} 1 \\
+S = {(2a + rn)(n + 1) \over 2}
+\end{gather*}
 $$
+
+<br>
+
+### <ins>Sposób 3</ins>
+**Zmiana kolejności sumowania w sumach wielokrotnych**
