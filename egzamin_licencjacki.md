@@ -34,6 +34,11 @@
 [2. Omów metody obliczania sum skończonych.](#md2) <br>
 [3. Trójkąt Stirlinga (dla podziałów) i liczby Bella.](#md3) <br>
 
+### **Algorytmy i struktury danych I**
+[1. Lista - definicja, sposoby reprezentowania.](#asd1_1) <br>
+[2. Złożoność obliczeniowa.](#asd1_2) <br>
+[3. Drzewa, drzewa binarne, algorytmy przeglądania drzew: inorder, postorder, preorder.](#asd1_3) <br>
+
 ---
 
 <br>
@@ -961,4 +966,204 @@ $$
 <div align="center">
 	<img src=img/md3_5.png>
 	<img src=img/md3_6.png>
+</div>
+
+
+---
+
+<br>
+
+## <a name="asd1_1"></a>
+
+### **Lista - definicja, sposoby reprezentowania.**
+
+<br>
+
+**Lista** - jedna z podstawowych struktur danych, czyli sposób przetrzymywania i przetwarzania danych. Implementacje listy są kontenerami sekwencyjnymi, gdzie nie mamy możliwości szybkiego dostępu do jakiegoś elementu poprzez indeksowanie (dostanie się do jakiegoś elementu to złożoność rzędu $O(n)$). Natomiast dodawanie elementów w dowolnym miejscu odbywa się w czasie stałym.
+
+<ins>**Sposoby reprezentacji:**</ins>
+
+**Rodzaje list**:
+- jednokierunkowa,
+- dwukierunkowa,
+- cykliczna,
+- niecykliczna
+
+**Lista wiązana:**
+- operuje wa wskaźnikach,
+- nie jest przechowywana w sposób ciągły,
+- najczęściej zawiera wskaźniki na początek i koniec listy, a one same w sobie zawierają wskaźniki na inny elementy listy
+
+```c++
+struct linked_list {
+	// metody listy
+
+	struct Node {
+		Node *prev;
+		Node *next;
+		int value;
+	};
+
+	Node *mp_head;
+	Node *mp_tail;
+};
+```
+
+<br>
+
+**Lista tablicowa:**
+- operuje na elementach tablicy,
+- przechowywana w sposób ciągły,
+- oprócz tablicy potrzebujemy przechowywać również indeks na ostatni element,
+- gdy dodajemy/usuwamy jakieś element to musimy odpowiednio przesunąć wszystkie elementy,
+- elementy nie mogą być przypadkowo porozrzucane: w analogii do listy wiązanej: pierwszemu indeksowi odpowiada `head`, drugiemu `head->next` itp
+
+```c++
+constexpr int max = 1000;
+
+struct array_list {
+	// metody listy
+
+	int m_list[max];
+	int m_last;
+}
+```
+
+<br>
+
+**Lista kursorowa:**
+- przechowywana w tablicy,
+- tutaj elementy mogą być porozrzucane po tablicy, tzn. pierwszy element nie musi znajdować się na pierwszym indeksie itp,
+- tak na prawdę jest tu potrzebna tablica dwu-rekordowa (lub trzy-rekordowa): jeden rekord odpowiada wartości elementu, drugi indeksowi następnego elementu (a trzeci indeksowi poprzedniego elementu),
+- przydatne w językach programowania, gdzie nie ma wskaźników (np. Fortran)
+
+```c++
+constexpr int max = 1000;
+
+struct cursor_list {
+	// metody listy
+
+	struct element {
+		int value;
+		int next;
+	};
+
+	element[max] list;
+	int head;
+};
+```
+
+---
+
+<br>
+
+## <a name="asd1_2"></a>
+
+### **2. Złożoność obliczeniowa.**
+
+<br>
+
+**Złożoność obliczeniowa:** określa jak wydajny jest program, ile musi wykonać operacji w zależności od wielkości danych oraz ile potrzebuje do tego pamięci. Złożoność obliczeniową dzielimy na **złożoność pamięciową** i **złożoność czasową**.
+
+<br>
+
+### <ins>Złożoność pamięciowa</ins>:
+
+Wyznacza ilość pamięci potrzebnej do wykonania danej operacji w zależności od **ilości pamięci potrzbnej na zarezerwowanie danych**, np. jeśli algorytm będzie zużywał 2 razy więcej pamięci niż na zarezerwowanie pamięci dla $n$ elementów, to taka złożoność będzie wynosić $2n$.
+
+<br>
+
+### <ins>Złożoność czasowa</ins>:
+
+Najczęściej jest wyznaczana na podstawie **liczby operacji dominujących** danego algorytmu. Takimi operacjami mogą być porównania, dodawanie elementu, pętle itp.
+
+<br>
+
+**Wyróżniamy 3 klasy złożoności czasowej:**
+
+<div align="center">
+	<img src=img/asd121.png>
+	<img src=img/asd122.png>
+	<img src=img/asd123.png>
+</div>
+
+<br>
+
+**Przykładowe rzędy złożoności obliczeniowej:**
+- $O(1)$ - złożoność stała, np. obliczanie sumy skończonego ciągu arytmetycznego,
+- $O(n)$ - wypisanie elementów tablicy,
+- $O(n^2)$ - sortowanie bąbelkowe,
+- $O(\log_2(n))$ - quicksort,
+- $O(n\log_2(n))$ - sortowanie przez scalanie
+
+---
+
+<br>
+
+## <a name="asd1_3"></a>
+
+### **3. Drzewa, drzewa binarne, algorytmy przeglądania drzew: inorder, postorder, preorder.**
+
+<br>
+
+### Drzewo
+- Jest to struktura zbudowana z węzłów, które przechowują wartości. Można inaczej powiedzieć, że jest to **graf spójny i niecykliczny**. Pierwszy węzeł drzewa nazywamy **korzeniem**, a wychodzące z niego węzły **dziećmi**. Węzły, które nie mają dzieci nazywamy **liścmi**,
+
+- Ciąg węzłów połączonych krawędziamy nazywamy **ścieżką**. Długość ścieżki jest określana poprzez liczbę tych krawędzi. **Wysokością drzewa** nazywamy najdłuższą ścieżkę w tym drzewie, która rozpoczyna się od korzenia,
+
+- Liczbę krawędzi powiązanych z danym węzłem nazywamy **stopniem węzła**. Krawędzie (na ogół w grafach) dzielimy na wchodzące i wychodzące
+
+<br>
+
+### Drzewo binarne
+
+- są to drzewa, w których węzły mogą mieć co najwyżej **dwójkę dzieci**,
+  
+- **regularne drzewo binarne** zawiera wyłącznie węzły, których stopnie są równe 0 lub 2 (czyli mają dwójkę dzieci, albo nie mają ich wcale),
+
+- **kompletne drzewo binarne** posiada <ins>zapełnione węzłami wszytkie jego poziomy z wyjątkiem ostatniego</ins>, lecz na ostatnim poziomy węzły są zapełniony zaczynając od lewej strony
+
+<br>
+
+<div align="center">
+	<img src=img/asd132.png>
+	<img src=img/asd133.png>
+</div>
+
+<br>
+
+### Metody przeglądania drzew
+
+- **preorder**: $parent \rightarrow left \rightarrow right$,
+- **inorder**: $left \rightarrow parent \rightarrow right$,
+- **postorder**: $left \rightarrow right \rightarrow parent$
+
+```c++
+void preorder(Node node) {
+	if(node != nullptr) {
+		std::cout << node->value << '\n';
+		preorder(node->left);
+		preorder(node->right);
+	}
+}
+
+void inorder(Node node) {
+	if(node != nullptr) {
+		inorder(node->left);
+		std::cout << node->value << '\n';
+		inorder(node->right);
+	}
+}
+
+void postorder(Node node) {
+	if(node != nullptr) {
+		postorder(node->left);
+		postorder(node->right);
+		std::cout << node->value << '\n';
+	}
+}
+```
+
+<div align="center">
+	<img src=img/asd134.png>
 </div>
