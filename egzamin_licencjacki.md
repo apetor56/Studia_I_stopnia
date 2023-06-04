@@ -890,6 +890,7 @@ $$
 $$
 
 Czyli elementy tej sumy wyglądają następująco:
+
 $$
 \begin{gather*}
 	1 \\
