@@ -936,3 +936,29 @@ $$
 	\sum_{i = 0}^{n} ax^i = a {{1 - x^{n + 1}} \over {1 - x}}
 \end{gather*}
 $$
+
+---
+
+<br>
+
+## <a name="md3"></a>
+
+### **3. Trójkąt Stirlinga (dla podziałów) i liczby Bella.**
+<br>
+
+<div align="center">
+	<img src=img/md3_1.png>
+	<img src=img/md3_2.png>
+	<img src=img/md3_3.png>
+	<img src=img/md3_4.png>
+</div>
+
+<br>
+<br>
+
+## **Liczba Bella**: liczba wszytkich podziałów danego zbioru $n$-elementowego
+
+<div align="center">
+	<img src=img/md3_5.png>
+	<img src=img/md3_6.png>
+</div>
