@@ -869,6 +869,7 @@ W grupie kobiet każda może wybrać męża spośród mężczyzn, których zna, 
 *Przykład: suma ciągu arytmetycznego:*
 
 $$
+\large
 \begin{gather*}
 	S = \sum_{k=0}^{n}(a + kr) = \sum_{k=0}^{n}(a + (n - k)r) = \sum_{k=0}^{n}(a + rn - rk) \\
 	2S = \sum_{k=0}^{n}(a + kr) + \sum_{k=0}^{n}(a + rn - rk) = \sum_{k=0}^{n}(2a+rn) \\
@@ -884,6 +885,7 @@ $$
 *Przykład: suma, której elementami są kolejne wyrazy ciągu harmonicznego:*
 
 $$
+\large
 \begin{gather*}
 	H_n = \sum_{j=1}^{n}{1 \over j} \Rightarrow \sum_{i=1}^{n}H_i = \sum_{i=1}^{n}\sum_{j=1}^{i}{1 \over j}
 \end{gather*}
@@ -892,6 +894,7 @@ $$
 Czyli elementy tej sumy wyglądają następująco:
 
 $$
+\large
 \begin{gather*}
 	1 \\
 	1 + {1 \over 2} \\ 
@@ -904,6 +907,7 @@ $$
 Zamiast dodawać po wierszach możemy napierw dodać wartości w kolumnach:
 
 $$
+\large
 \begin{gather*}
 	\sum_{i=1}^{n}\sum_{j=1}^{i}{1 \over j} = \sum_{j=1}^{i}{1 \over j}(n + 1 - j) = \sum_{j=1}^{i}({n + 1 \over j} - 1) = \sum_{j=1}^{i}{n + 1 \over j} - i = (n + 1)H_i - i
 \end{gather*}
@@ -923,10 +927,11 @@ $$
 *Przykład: suma ciągu geometrycznego:*
 
 $$
+\large
 \begin{gather*}
 	S_n = \sum_{i = 0}^{n} ax^i \\
-	\sum_{i = 0}^{n} ax^i + ax^{n + 1} = a + \sum_{i=0}^{n} ax^{i + 1} = a + x\sum_{i=1}^{n} ax^{i} \\
-	\sum_{i = 0}^{n} ax^i - x\sum_{i=1}^{n} ax^{i} = a - ax^{n + 1} \\
+	{\color{red}\sum_{i = 0}^{n} ax^i} + {\color{blue}ax^{n + 1}} = a + \sum_{i=0}^{n} ax^{i + 1} = {\color{purple} a} + {\color{green}x\sum_{i=1}^{n} ax^{i}} \\
+	{\color{red}\sum_{i = 0}^{n} ax^i} - {\color{green}x\sum_{i=1}^{n} ax^{i}} = {\color{purple}a} - {\color{blue}ax^{n + 1}} \\
 	(1 - x)\sum_{i = 0}^{n} ax^i = a(1 - x^{n + 1}) \\
 	\sum_{i = 0}^{n} ax^i = a {{1 - x^{n + 1}} \over {1 - x}}
 \end{gather*}
