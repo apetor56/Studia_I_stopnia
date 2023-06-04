@@ -893,10 +893,10 @@ Czyli elementy tej sumy wyglądają następująco:
 $$
 \begin{gather*}
 	1 \\
-	\ \ \ \ \ \ \ \ 1 + {1 \over 2} \\ 
-	\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 1 + {1 \over 2} + {1 \over 3} \\
-	\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \dots \ \dots \ \dots  \ \dots \\
-	\ \ \ \ \ \ \ \ \ \ \ \ \ \ \  \ \ \ \ \ \ \ \ \ \ \ \ \ \  \ \ \ \ \ 1 + {1 \over 2} + {1 \over 3} + \dots + {1 \over n}
+	1 + {1 \over 2} \\ 
+	1 + {1 \over 2} + {1 \over 3} \\
+	... \\
+	1 + {1 \over 2} + {1 \over 3} + ... + {1 \over n}
 \end{gather*}
 $$
 
