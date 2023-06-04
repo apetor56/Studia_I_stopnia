@@ -2,7 +2,9 @@
 
 ### Do lepszego ogarnięcia/zrobienia:
 - java: JDBC,
-- dyskretna: dodać algorytm łączenia w pary
+- dyskretna:
+  - dodać algorytm łączenia w pary,
+  - dodać rachunek różnicowy i liczenie przez części
 
 ### **Java**
 
@@ -863,21 +865,68 @@ W grupie kobiet każda może wybrać męża spośród mężczyzn, których zna, 
 <br>
 
 ### <ins>Sposób 2</ins>
-**Przeindeksowanie sumy**:
-- próba uproszczenia sumy poprzez zmianę dodawania składników (kolejność indeksów)
-
-*Przykład: suma ciągu arytmetycznego*
+**Przeindeksowanie sumy** <br>
+*Przykład: suma ciągu arytmetycznego:*
 
 $$
 \begin{gather*}
-S = \sum_{k=0}^{n}(a + kr) = \sum_{k=0}^{n}(a + (n - k)r) = \sum_{k=0}^{n}(a + rn - rk) \\
-2S = \sum_{k=0}^{n}(a + rn - rk) + \sum_{k=0}^{n}(a + kr) = \sum_{k=0}^{n}(2a+rn) \\
-a, r, n \backsim const \Rightarrow 2S = (2a + rn) \sum_{k=0}^{n} 1 \\
-S = {(2a + rn)(n + 1) \over 2}
+	S = \sum_{k=0}^{n}(a + kr) = \sum_{k=0}^{n}(a + (n - k)r) = \sum_{k=0}^{n}(a + rn - rk) \\
+	2S = \sum_{k=0}^{n}(a + kr) + \sum_{k=0}^{n}(a + rn - rk) = \sum_{k=0}^{n}(2a+rn) \\
+	a, r, n \backsim const \Rightarrow 2S = (2a + rn) \sum_{k=0}^{n} 1 \\
+	S = {(2a + rn)(n + 1) \over 2}
 \end{gather*}
 $$
 
 <br>
 
 ### <ins>Sposób 3</ins>
-**Zmiana kolejności sumowania w sumach wielokrotnych**
+**Zmiana kolejności sumowania w sumach wielokrotnych** <br>
+*Przykład: suma, której elementami są kolejne wyrazy ciągu harmonicznego:*
+
+$$
+\begin{gather*}
+	H_n = \sum_{j=1}^{n}{1 \over j} \Rightarrow \sum_{i=1}^{n}H_i = \sum_{i=1}^{n}\sum_{j=1}^{i}{1 \over j}
+\end{gather*}
+$$
+
+Czyli elementy tej sumy wyglądają następująco:
+$$
+\begin{gather*}
+	1 \\
+	\ \ \ \ \ \ \ \ 1 + {1 \over 2} \\ 
+	\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 1 + {1 \over 2} + {1 \over 3} \\
+	\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \dots \ \dots \ \dots  \ \dots \\
+	\ \ \ \ \ \ \ \ \ \ \ \ \ \ \  \ \ \ \ \ \ \ \ \ \ \ \ \ \  \ \ \ \ \ 1 + {1 \over 2} + {1 \over 3} + \dots + {1 \over n}
+\end{gather*}
+$$
+
+Zamiast dodawać po wierszach możemy napierw dodać wartości w kolumnach:
+
+$$
+\begin{gather*}
+	\sum_{i=1}^{n}\sum_{j=1}^{i}{1 \over j} = \sum_{j=1}^{i}{1 \over j}(n + 1 - j) = \sum_{j=1}^{i}({n + 1 \over j} - 1) = \sum_{j=1}^{i}{n + 1 \over j} - i = (n + 1)H_i - i
+\end{gather*}
+$$
+
+<br>
+
+### <ins>Sposób 4</ins> <br>
+
+<div align="center">
+	<br>
+	<img src=img/md2_2.png>
+</div>
+
+<br>
+
+*Przykład: suma ciągu geometrycznego:*
+
+$$
+\begin{gather*}
+	S_n = \sum_{i = 0}^{n} ax^i \\
+	\sum_{i = 0}^{n} ax^i + ax^{n + 1} = a + \sum_{i=0}^{n} ax^{i + 1} = a + x\sum_{i=1}^{n} ax^{i} \\
+	\sum_{i = 0}^{n} ax^i - x\sum_{i=1}^{n} ax^{i} = a - ax^{n + 1} \\
+	(1 - x)\sum_{i = 0}^{n} ax^i = a(1 - x^{n + 1}) \\
+	\sum_{i = 0}^{n} ax^i = a {{1 - x^{n + 1}} \over {1 - x}}
+\end{gather*}
+$$
