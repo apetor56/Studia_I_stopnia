@@ -393,7 +393,7 @@ Wpływ normalizacji na wydajność zależy od stopnia normalizacji. W niektóryc
 ### **2. Klucze główne, obce i wyzwalacze.**
 <br>
 
-<ins>**Klucz**</ins> - Mówimy, ze zbiór atrybutów ${\{A_1, A_2, . . . , A_n\}}$ tworzy klucz pewnej tabeli, jeśli wszystkie pozostałe atrybuty z tej tabeli są funkcyjnie zależne od wskazanego zbioru. Dwie różne krotki nie mogą mieć tych samych kluczy. 
+<ins>**Klucz**</ins> - Mówimy, ze zbiór atrybutów ${\lbraceA_1, A_2, . . . , A_n\rbrace}$ tworzy klucz pewnej tabeli, jeśli wszystkie pozostałe atrybuty z tej tabeli są funkcyjnie zależne od wskazanego zbioru. Dwie różne krotki nie mogą mieć tych samych kluczy. 
 
 <ins>**Klucz obcy**</ins> to atrybut lub kombinacja atrybutów w tabeli, który odwołuje się do **klucza głównego lub unikalnego atrybutu w innej tabeli**. Jego celem jest zapewnienie spójności danych i umożliwienie łączenia tabel. Klucz obcy tworzy zależność między tabelami.
 
@@ -843,7 +843,7 @@ Graf $G = (V, E)$ nazywamy dwudzielnym, jeśli istnieją rozłączne zbiory $V_1
 
 Zbiór wierzchołków z $V_2$ połączonych z wierzchołkami podzbioru $W \subseteq V_1$ oznaczamy $\Phi_E(W)$, formalnie:
 
-$$ \Phi_E(W) = \{ v \in V_2 : \exists w \in W : wv \in E \} $$
+$$ \Phi_E(W) = \lbrace v \in V_2 : \exists w \in W : wv \in E \rbrace $$
 
 <div align="center">
 	<br>
@@ -1190,7 +1190,7 @@ Struktura złożona z wierzchołków i krawędzi łączących te wierzchołki. F
 
 $G = (V, E), \space V - zbiór \space wierzchołków$
 
-Jeśli $E$ zawiera w sobie **zbiory dwóch wierzchołków** $(E \subseteq \{\{u,v\}: u,v \in V\})$, to graf $G$ jest <ins>grafem nieskierowanym</ins>, natomiast jeśli $E \subseteq V \times V$, to zawiera on w sobie **pary uporządkowane wierzchołków** $(E \subseteq \{(u,v): u,v \in V\})$, czyli jest <ins>grafem skierowanym</ins>.
+Jeśli $E$ zawiera w sobie **zbiory dwóch wierzchołków** $(E \subseteq \lbrace u,v\rbrace: u,v \in V\rbrace)$, to graf $G$ jest <ins>grafem nieskierowanym</ins>, natomiast jeśli $E \subseteq V \times V$, to zawiera on w sobie **pary uporządkowane wierzchołków** $(E \subseteq \lbrace(u,v): u,v \in V\rbrace)$, czyli jest <ins>grafem skierowanym</ins>.
 
 <br>
 
@@ -1285,6 +1285,7 @@ start_vertex.visited = True
 
 while queue.size != 0:
 	v = queue.get()
+	print(v)
 
 	for neighbour in v.neighbours():
 		if not neighbour.visited:
