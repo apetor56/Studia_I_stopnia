@@ -4,10 +4,10 @@
 - java: JDBC,
 - dyskretna:
   - dodać algorytm łączenia w pary,
-  - dodać rachunek różnicowy i liczenie przez części
+  - dodać rachunek różnicowy i liczenie przez części,
+- wdak: dodać rolę przerwań
 
 ### **Java**
-
 [1. Co to jest klasa abstrakcyjna i interfejs w Javie.](#java1) <br>
 [2. Proszę omówić dostępne sposoby synchronizacji wątków w Javie.](#java2) <br>
 [3. Czy Java jest językiem kompilowanym czy interpretowanym?](#java3) <br>
@@ -44,6 +44,11 @@
 [1. Grafy - definicja, sposoby reprezentowania grafu.](#asd2_1) <br>
 [2. Algorytmy przeszukiwania grafu BFS i DFS.](#asd2_2) <br>
 [3. Algorytm Dijkstry.](#asd2_3) <br>
+
+### **Wstęp do architektury komputerów**
+[1. Elementy rozkazu maszynowego i cykl wykonania rozkazu.](#wdak1) <br>
+[2. Rola przewań.](#wdak2) <br>
+[3. Główne cechy architektury komputerów von Neumana.](#wdak3) <br>
 
 ---
 
@@ -1190,7 +1195,7 @@ Struktura złożona z wierzchołków i krawędzi łączących te wierzchołki. F
 
 $G = (V, E), \space V - zbiór \space wierzchołków$
 
-Jeśli $E$ zawiera w sobie **zbiory dwóch wierzchołków** $(E \subseteq \lbrace u,v\rbrace: u,v \in V\rbrace)$, to graf $G$ jest <ins>grafem nieskierowanym</ins>, natomiast jeśli $E \subseteq V \times V$, to zawiera on w sobie **pary uporządkowane wierzchołków** $(E \subseteq \lbrace(u,v): u,v \in V\rbrace)$, czyli jest <ins>grafem skierowanym</ins>.
+Jeśli $E$ zawiera w sobie **zbiory dwóch wierzchołków** $(E \subseteq \lbrace \lbrace u,v\rbrace: u,v \in V\rbrace)$, to graf $G$ jest <ins>grafem nieskierowanym</ins>, natomiast jeśli $E \subseteq V \times V$, to zawiera on w sobie **pary uporządkowane wierzchołków** $(E \subseteq \lbrace(u,v): u,v \in V\rbrace)$, czyli jest <ins>grafem skierowanym</ins>.
 
 <br>
 
@@ -1334,3 +1339,107 @@ Jest wykorzystywany do znalezienia najkrótszej (najmniej kosztownej ścieżki) 
 	<img src=img/asd232.png> <br>
 	<img src=img/asd233.png> <br>
 </div>
+
+---
+
+<br>
+
+## <a name="wdak1"></a>
+
+### **1. Elementy rozkazu maszynowego i cykl wykonania rozkazu.**
+
+<br>
+
+### Rozkaz maszynowy:
+- **najprostsza operacja**, której wykonania programista może zażądać od procesora,
+- sposób realizacji rozkazu nie jest istotny dla użytkownika systemu i z reguły nie jest znany,
+- **pojedyncza operacja** <ins>centralnej jednostki obliczeniowej</ins> określona przez zestaw rozkazów jej modelu programowego,
+- jest przekazywana do procesora, który ją **dekoduje**, a następnie **wykonuje**, po czym wynik **zapisuje** w określonym miejscu lub ustawia flagę błędu, jeżeli taki wystąpił
+
+### Elementy rozkazu:
+- **kod operacji**: określa rodzaj operacji, która ma zostać wykonana, np. dodawanie, odejmowanie, porównania, przesunięcie itp. Każda operacja ma przypisany unikalny kod lub identyfikator,
+- **odniesienie do argumentów źródłowych (operandów)**: wskazuje **źrodło danych**, na których ma być wykonana operacja. Może to być rejestr procesora, pamięć lub inny operand,
+- **odniesienie do wyniku**: wskazuje miejsce, gdzie mają być zapisane wyniki. Może to być rejestr procesora lub inny operand,
+- **odniesienie do następnego rozkazu**: wskazuje następny rozkaz do wykonania
+
+<br>
+
+**Cykl rozkazu** to kroki, które muszą być zrealizowane przez procesor by poprawnie przetworzyć rozkaz maszynowy.
+
+### Cykl rozkazu maszynowego (bez przerwań):
+1. **Pobranie rozkazu**: procesor pobiera rozkaz z pamięci,
+
+
+2. **Dekodowanie rozkazu**: procesor <ins>analizuje otrzymany rozkaz</ins> i odczytuje takie elementy jak **kod operacji, operandy, tryb adresowania** itp. W opraciu o te informacje procesor wie, jakie operacje ma wykonać i jakie operandy są potrzebne.
+
+3. **Pobranie operandów**: procesor pobiera potrzebne operandy na podstawie trybu adresowania i wartości operandów, które zostały określone w rozkazie.
+
+4. **Wykonanie operacji**: procesor wykonuje właściwą operację na pobranych operandach.
+
+5. **Zapisanie wyników**: procesor zapisuje wyniki (najczęściej w rejestrze procesora nazywanym akululatorem)
+
+W przypadku przerwań - po wykonaniu rozkazu sprawdzamy, czy wystąpiły przerwania. Jeśli tak, to takie przerwanie należy przetworzyć.
+
+<br>
+
+<div align="center">
+	<img src=img/wdak1_1.png> <br>
+	<img src=img/wdak1_2.png> <br>
+</div>
+
+---
+
+<br>
+
+## <a name="wdak2"></a>
+
+### **2. Rola przewań.**
+
+---
+
+<br>
+
+## <a name="wdak2"></a>
+
+### **3. Główne cechy architektury komputerów von Neumana.**
+
+<br>
+
+- **dane i rozkazy** przechowywane są **w tej samej pamięci**, umożliwiającej zapis i odczyt,
+- zawartość tej pamięci jest adresowana przez wskazanie miejsca, bez względu na rodzaj danych,
+- wykonywanie rozkazów następuje **w sposób szeregowy**, czyli **rozkaz po rozkazie**, z wyjątkiem określonych szczególnych przypadków
+
+<br>
+
+### Komponenty komputera von Neumana:
+- **pamięć komputerowa**: przechowuje dane oraz intrukcje programu, każda komórka pamięci ma unikatowy identyfikator nazywany adresem,
+
+- **jednostka sterująca**: odpowiedzialna jest za pobieranie danych i rozkazów z pamięci oraz ich przetwarzanie,
+
+- **jednostka arytmetyczno-logiczna**: odpowiadzialna jest za wykonywanie podstawowych operacji arytmetycznych,
+
+- **urządzenia wejścia/wyjścia**: służą do interakcji
+
+<br>
+
+**Jednostka sterująca** wraz z **jednostką arytmetyczno-logiczną** stanowią <ins>procesor</ins>.
+
+<div align="center">
+	<img src=img/wdak3_1.png> <br>
+</div>
+
+<br>
+
+### System komputerowy zbudowany w oparciu o powyższą architekturę powinien:
+- mieć skończoną listę rozkazów,
+  
+- mieć możliwość wprowadzenia programu do systemu komputerowego poprzez 
+urządzenia zewnętrzne i jego przechowywanie w pamięci w sposób identyczny jak 
+danych,
+
+- dane i instrukcje w takim systemie powinny być jednakowo dostępne dla procesora,
+
+-  informacja jest tam przetwarzana dzięki sekwencyjnemu odczytywaniu instrukcji z 
+pamięci komputera i wykonywaniu tych instrukcji w procesorze
+
+---
