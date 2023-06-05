@@ -1329,7 +1329,7 @@ Jest wykorzystywany do znalezienia najkrótszej (najmniej kosztownej ścieżki) 
 <br>
 
 <div align="center">
-	<img src=img/asd231.png>
-	<img src=img/asd232.png>
-	<img src=img/asd233.png>
+	<img src=img/asd231.png> <br>
+	<img src=img/asd232.png> <br>
+	<img src=img/asd233.png> <br>
 </div>
