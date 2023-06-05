@@ -39,6 +39,12 @@
 [2. Złożoność obliczeniowa.](#asd1_2) <br>
 [3. Drzewa, drzewa binarne, algorytmy przeglądania drzew: inorder, postorder, preorder.](#asd1_3) <br>
 
+
+### **Algorytmy i struktury danych II**
+[1. Grafy - definicja, sposoby reprezentowania grafu.](#asd2_1) <br>
+[2. Algorytmy przeszukiwania grafu BFS i DFS.](#asd2_2) <br>
+[3. Algorytm Dijkstry.](#asd2_3) <br>
+
 ---
 
 <br>
@@ -1167,3 +1173,120 @@ void postorder(Node node) {
 <div align="center">
 	<img src=img/asd134.png>
 </div>
+
+---
+
+<br>
+
+## <a name="asd2_1"></a>
+
+### **1. Grafy - definicja, sposoby reprezentowania grafu.**
+
+<br>
+
+### Graf:
+
+Struktura złożona z wierzchołków i krawędzi łączących te wierzchołki. Formalnie:
+
+$G = (V, E), \space V - zbiór \space wierzchołków$
+
+Jeśli $E$ zawiera w sobie **zbiory dwóch wierzchołków** $(E \subseteq \{\{u,v\}: u,v \in V\})$, to graf $G$ jest <ins>grafem nieskierowanym</ins>, natomiast jeśli $E \subseteq V \times V$, to zawiera on w sobie **pary uporządkowane wierzchołków** $(E \subseteq \{(u,v): u,v \in V\})$, czyli jest <ins>grafem skierowanym</ins>.
+
+<br>
+
+### Pojęcia związane z grafami:
+
+- <ins>spójność</ins>: graf jest spójny, jeśli z każdego jednego wierzchołka można dostać się do innego,
+- <ins>ścieżka</ins>: niepusty ciąg wierzchołków połączonych krawędziami,
+- <ins>cykliczność</ins>: ścieżka, w której powtarzają się pierwszy i ostatni wierzchołek,
+- <ins>stopień wierzchołka</ins>: liczba krawędzi połączonych z danym wierzchołkiem (dzielimy na stopnie wchodzące i wychodzące),
+- <ins>regularność</ins>: graf jest regularny, jeśli stopnie wszystkich jego wierzchołków są równe,
+- <ins>pełność</ins>: graf jest pełny, jeśli posiada wszystkie możliwe krawędzie,
+- <ins>planarność</ins>: graf jest planarny, jeśli jego wierzchołki i krawędzie da się połączyć w taki sposób, by krawędzie się nie przecinały
+
+<br>
+
+### Sposoby reprezentacji grafów:
+
+<div align="center">
+	<img src=img/asd221.png>
+	<img src=img/asd222.png>
+	<img src=img/asd223.png>
+</div>
+
+---
+
+<br>
+
+## <a name="asd2_2"></a>
+
+### **2. Algorytmy przeszukiwania grafu BFS i DFS.**
+
+<br>
+
+**DFS (Depth First Search)**: algorytm ten przeszukuje rekursywnie (lub z pomocą stosu i pętli `while`) sąsiadów danego wierzchołka (o ile nie zostali jeszcze odwiedzeni).
+
+- DFS bada **spójność** grafu
+- każdy wierzchołek jest odwiedzany tylko raz,
+- ścieżka DFS wyznacza **drzewo rozpinające graf**, czyli graf bez cykli,
+- złożoność dla macierzy sąsiedztwa - $O(n^2)$,
+- złożoność dla listy sąsiedztwa - $O(n + m)$ (dla grafów rzadkich $O(n)$)
+
+<ins>Algorytm rekurencyjny</ins>:
+```python
+def DFS(v):
+	print(v)
+	v.visited = True
+
+	neighbours = v.neighbours()
+	for neighbour in neighbours:
+		if not v.visited:
+			DFS(neighbour)
+
+------------------------------------------------
+
+# jeśli graf jest spójny, to zostaną odwiedzone
+# wszystkie wierzchołki grafu, jeśli nie, to 
+# musimy znaleźć nieodwiedzony wierzchołek i
+# na nim wykonać DFS
+```
+
+<ins>Algorytm ze stosem</ins>:
+
+```python
+stack
+start_vertex
+
+stack.add(start_vertex)
+
+while stack.size != 0:
+	v = stack.get()
+	if v.visited == True:
+		continue
+
+	print(v)
+	v.visited = True
+
+	for neighbour in v.neighbours():
+		stack.add(neighbour)
+```
+<br>
+
+**BFS (Breadth First Search)**: polega na odwiedzaniu wierzchołków wszerz, tzn. przechodzimy do wierzchołka i odwiedzamy wszystkich jego sąsiadów, potem wszystkich sąsiadów jego sąsiadów itd. Metodę tę implementuje się za pomocą <ins>kolejki</ins>, ponieważ dane są odczytywane w takiej kolejności, w jakiej zostały zapisane. Złożoność obliczeniowa taka sama jak w DFS.
+
+<ins>Implementacja</ins>:
+```python
+queue
+start_vertex
+
+queue.add(start_vertex)
+start_vertex.visited = True
+
+while queue.size != 0:
+	v = queue.get()
+
+	for neighbour in v.neighbours():
+		if not neighbour.visited:
+			queue.add(neighbour)
+			neighbour.visited = True
+```
