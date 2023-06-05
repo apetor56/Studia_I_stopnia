@@ -1275,6 +1275,7 @@ while stack.size != 0:
 **BFS (Breadth First Search)**: polega na odwiedzaniu wierzchołków wszerz, tzn. przechodzimy do wierzchołka i odwiedzamy wszystkich jego sąsiadów, potem wszystkich sąsiadów jego sąsiadów itd. Metodę tę implementuje się za pomocą <ins>kolejki</ins>, ponieważ dane są odczytywane w takiej kolejności, w jakiej zostały zapisane. Złożoność obliczeniowa taka sama jak w DFS.
 
 <ins>Implementacja</ins>:
+
 ```python
 queue
 start_vertex
@@ -1290,3 +1291,45 @@ while queue.size != 0:
 			queue.add(neighbour)
 			neighbour.visited = True
 ```
+
+---
+
+<br>
+
+## <a name="asd2_3"></a>
+
+### **3. Algorytm Dijkstry**
+
+<br>
+
+Jest wykorzystywany do znalezienia najkrótszej (najmniej kosztownej ścieżki) w grafie z punktu A do B. Należy zwrócić uwagę na to, że wagi krawędzi muszą być **nieujemne**.
+
+### Schemat postępowania
+
+1. Tworzymy dla zbiory $S$ i $Q$. Początkowo $S$ jest pusty, a $Q$ zawiera wszytkie wierzchołki grafu.
+
+
+2. Definiujemy funkcję dojścia $d(u)$, której wartość jest równa odległości wierzchołka $u$ od wierzchołka startowego $v$.
+
+
+3. $d(v)$ ustawiamy na $0$, dla reszty wierzchołków ustawiamy $d(u)$ na nieskończoność (tworzymy tablicę z watościami funckji $d()$).
+
+
+4. Definiujemy poprzednik każdego wierzchołka $p(u)$. Za pomocą poprzedników odtworzymy trasę od końca: od ostatatniego wierzchołka do pierwszego.
+
+
+5. **Dopóki $Q$ zawiera wierzchołki**, wykonujemy następujące czynności:
+   - wybieramy ze zbioru $Q$ wierzchołek o **najmniejszym koszcie dojścia**,
+   - wybrany wierzchołek <ins>przenosimy ze zbioru $Q$ do zbioru $S$</ins>,
+   - dla każdego sąsiada $w$ wierzchołka $u$, <ins>**który wciąż jest w zbiorze $Q$**</ins> sprawdzamy, czy:
+     - $d(u) > d(w) + waga \space krawędzi \space uw$,
+     - jeśli tak to $d(u) = d(w) + waga \space krawędzi \space uw$,
+     - następnie ustawiamy poprzednika wierzchołka $w$ na $u$
+
+<br>
+
+<div align="center">
+	<img src=img/asd231.png width=33% height=350px>
+	<img src=img/asd232.png width=33% height=350px>
+	<img src=img/asd233.png width=33% height=350px>
+</div>
