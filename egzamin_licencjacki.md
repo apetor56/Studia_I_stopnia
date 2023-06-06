@@ -5,7 +5,7 @@
 - dyskretna:
   - dodać algorytm łączenia w pary,
   - dodać rachunek różnicowy i liczenie przez części,
-- wdak: dodać rolę przerwań
+- ~~wdak: dodać rolę przerwań~~
 
 ### **Java**
 [1. Co to jest klasa abstrakcyjna i interfejs w Javie.](#java1) <br>
@@ -49,6 +49,11 @@
 [1. Elementy rozkazu maszynowego i cykl wykonania rozkazu.](#wdak1) <br>
 [2. Rola przewań.](#wdak2) <br>
 [3. Główne cechy architektury komputerów von Neumana.](#wdak3) <br>
+
+### **Podstawy informatyki**
+[1. Wymień i scharakteryzuj poznane metody programowania. Dla każdej metody podaj przykładowy problem i sposób jego rozwiązania.](#pi1) <br>
+[2. Co oznacza, ze algorytm jest częściowo poprawny, ma własność STOPu oraz kiedy mówimy, że algorytm jest całkowicie poprawny?](#pi2) <br>
+[3. Porównaj język maszynowy, język symboliczny i języki programowania wysokiego poziomu. Dlaczego mamy tak wiele języków programowania i co je różni?](#pi3) <br>
 
 ---
 
@@ -1484,5 +1489,198 @@ danych,
 
 -  informacja jest tam przetwarzana dzięki sekwencyjnemu odczytywaniu instrukcji z 
 pamięci komputera i wykonywaniu tych instrukcji w procesorze
+
+---
+
+<br>
+
+## <a name="pi1"></a>
+
+### 1. Wymień i scharakteryzuj poznane metody programowania. Dla każdej metody podaj przykładowy problem i sposób jego rozwiązania.
+
+<br>
+
+### Metody programowania:
+- **rekurencja**,
+- **dziel i zwyciężaj**,
+- **programowanie zachłanne**,
+- **programowanie dynamiczne**
+
+<br>
+
+### Rekurencja
+
+Sposób programowania, w którym funkcja wywołuje samą siebie.
+
+```c++
+/* potężne obliczanie silni */
+int factorial(int n) {
+	if(n == 1) {
+		return 1;
+	}
+
+	return n * factorial(n - 1);
+}
+```
+
+```c++
+/* przechodzenie drzewa binarnego inorder */
+void inorder(Node node) {
+	if(node != nullptr) {
+		inorder(node->left);
+		std::cout << node.value << '\n';
+		inorder(node->right);
+	}
+}
+```
+
+### Dziel i zwyciężaj
+Polega na dzieleniu problemu na mniejsze podproblemy aż do momentu, gdy możemy rozwiązać dany podproblem i użyć go później do rozwiązania całości
+
+```c++
+/* znajdowanie zadanego elementu w tablicy
+   posortowanej za pomocą metody bisekcji */
+
+int array[] = {1, 3, 5, 8, 11, 17, 23, 56, 69, 80};
+const int size = 10;
+
+int bisection(int element) {
+    int left_index = 0;
+    int right_index = size - 1;
+    int middle = (left_index + right_index) / 2;
+
+    while(left_index <= right_index) {
+        if(array[middle] == element) {
+            return middle;
+        }
+        else if(array[middle] < element) {
+            left_index = middle + 1;
+        }
+        else {
+            right_index = middle - 1;
+        }
+
+        middle = (left_index + right_index) / 2;
+    }
+
+    return -1;
+}
+```
+
+### Programowanie zachłanne
+Metoda ta polega na wybieraniu decyzji, która w danym momencie wydaje się najkorzystniejsza. Algorytmy zachłanne dokonują wyborów lokalnie optymanlych licząc, że doprowadzą one do prawidłowego wyniku.
+
+```c++
+/* rozmienianie kwoty za pomocą nominałów 1, 2 i 5 */
+void rozmien(int kwota) {
+    static int nominaly[] = {1, 2, 5};
+    int i = 2;
+
+    while(kwota != 0) {
+        if(kwota - nominaly[i] >= 0) {
+            std::cout << nominaly[i] << ' ';
+            kwota -= nominaly[i];
+        }
+        else {
+            i--;
+        }
+    }
+}
+```
+
+### Programowanie zachłanne
+Polega na rozwiązywaniu i zapamiętywaniu podproblemów. Wyniki rozwiązań zapisuje się w tabeli, dzięki czemu w przypadku natrafienia na ten sam problem możemy skorzystać ze wcześniej obliczonego wyniku.
+
+```c++
+/* ciąg fibonacciego */
+int fib(int n) {
+    std::vector<int> fib_arr(n + 1);
+    fib_arr[0] = 0;
+    fib_arr[1] = 1;
+
+    for(int i = 2; i < fib_arr.size(); i++) {
+        fib_arr[i] = fib_arr[i - 1] + fib_arr[i - 2];
+    }
+
+    return fib_arr.back();
+}
+```
+
+---
+
+<br>
+
+## <a name="pi2"></a>
+
+### **2. Co oznacza, ze algorytm jest częściowo poprawny, ma własność STOPu oraz kiedy mówimy, że algorytm jest całkowicie poprawny?**
+
+<br>
+
+### Problem stopu
+Mówimy o algorytmie, że spełnia warunek stopu, gdy zakończy się **w skończonym czasie** i w **skończonej liczbie kroków**.
+
+<br>
+
+### Algorytm całkowicie poprawny
+Algorytm jest całkowicie poprawny, gdy:
+- posiada własność STOPU,
+- zwraca poprawny wynik dla poprawnych danych wejściowych
+
+Jeśli algorytm zwraca poprawne wyniki, a nie posiada właności stopu, to mówimy że jest **częściowo poprawny**.
+
+---
+
+<br>
+
+## <a name="pi3"></a>
+
+### **3. Porównaj język maszynowy, język symboliczny i języki programowania wysokiego poziomu. Dlaczego mamy tak wiele języków programowania i co je różni?**
+
+<br>
+
+### Język maszynowy:
+- język programowania **najniższego poziomu**,
+  
+- może być bezpośrednio zrozumiały dla procesora
+  
+- składa się z **sekwencji zer i jedynek**
+  
+- **szybki**
+  
+- **nieprzenośny**
+  
+- **trudy** do programowania
+
+<br>
+
+### Język symboliczny:
+- język programowania **niskiego poziomu**,
+  
+- <ins>1 komenda to jeden rozkaz procesora</ins>,
+
+- szybki,
+
+- nadal trudny do programowania, lecz łatwiejszy od języka maszynowego,
+
+- np. **asembler**, korzystanie z rejestrów procesora, rozkazów itp.,
+  
+- wykorzystywane **do pisania sterowników**, **w systemach wbudowanych**, **RTS** itp.
+
+<br>
+
+### Język wysokiego poziomu:
+- zrozumiały dla programisty,
+
+- ciągle rozwiają się poprzez tworzenie nowych bibliotek, frameworków,
+
+- wolniejsze od języków symbolicznych i maszynowych,
+
+- łatwe do nauki,
+
+- niezależne od platformt sprzętowej i systemowej
+
+<br>
+
+Mamy wiele języków programowania ze względu na różne wymagania i potrzeby programistów. Niektóre języki są bardziej odpowiednie do pisania systemów operacyjnych i aplikacji niskopoziomowych, podczas gdy inne są bardziej odpowiednie do pisania aplikacji internetowych i mobilnych. Różnice między językami obejmują składnię, semantykę, możliwości i wydajność. Właściwy wybór języka programowania zależy od wielu czynników, takich jak cel programu, doświadczenie programisty i preferencje techniczne.
 
 ---
