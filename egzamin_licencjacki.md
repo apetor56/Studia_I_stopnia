@@ -398,7 +398,7 @@ Wpływ normalizacji na wydajność zależy od stopnia normalizacji. W niektóryc
 ### **2. Klucze główne, obce i wyzwalacze.**
 <br>
 
-<ins>**Klucz**</ins> - Mówimy, ze zbiór atrybutów ${\lbraceA_1, A_2, . . . , A_n\rbrace}$ tworzy klucz pewnej tabeli, jeśli wszystkie pozostałe atrybuty z tej tabeli są funkcyjnie zależne od wskazanego zbioru. Dwie różne krotki nie mogą mieć tych samych kluczy. 
+<ins>**Klucz**</ins> - Mówimy, ze zbiór atrybutów ${\lbrace A_1, A_2, . . . , A_n\rbrace}$ tworzy klucz pewnej tabeli, jeśli wszystkie pozostałe atrybuty z tej tabeli są funkcyjnie zależne od wskazanego zbioru. Dwie różne krotki nie mogą mieć tych samych kluczy. 
 
 <ins>**Klucz obcy**</ins> to atrybut lub kombinacja atrybutów w tabeli, który odwołuje się do **klucza głównego lub unikalnego atrybutu w innej tabeli**. Jego celem jest zapewnienie spójności danych i umożliwienie łączenia tabel. Klucz obcy tworzy zależność między tabelami.
 
@@ -1382,6 +1382,12 @@ W przypadku przerwań - po wykonaniu rozkazu sprawdzamy, czy wystąpiły przerwa
 
 <br>
 
+### Ważne pojęcia:
+- **licznik rozkazu PC**: *wskazuje* na adres rozkazu do pobrania (licznik, bo zawiera liczbę(?)),
+- **rejestr rozkazu IR**: *przechowuje* pobrany rozkaz
+  
+<br>
+
 <div align="center">
 	<img src=img/wdak1_1.png> <br>
 	<img src=img/wdak1_2.png> <br>
@@ -1395,17 +1401,54 @@ W przypadku przerwań - po wykonaniu rozkazu sprawdzamy, czy wystąpiły przerwa
 
 ### **2. Rola przewań.**
 
+<br>
+
+- system przerwań umożliwia niesekwencyjne (współbieżne) wykonywanie programów,
+
+- oszczędzanie cykli procesora poprzez brak odpytywań,
+
+- szybkie radzenie sobie z wydarzeniami od urządzeń wejścia/wyjścia
+
+Za pomocą przerwań procesor może być angażowany w **wykonywanie innych rozkazów**, podczas gdy ma miejsce operacja **wejścia-wyjścia**.
+
+<br>
+
+### Klasy przerwań:
+- **programowe**: np. dzielenie przez 0, przepełnienie arytmetyczne,
+
+- **zegarowe**: generowane przez wewnętrzny zegar procesora,
+
+- **wejście/wyjście**: generowane przez sterownik wejścia/wyjścia,
+
+- **uszkodzenie sprzętu**: np defekt zasilania
+
+<br>
+
+<div align="center">
+	<img src=img/wdak2_2.png> <br>
+	<img src=img/wdak2_1.png> <br>
+</div>
+
+<br>
+
+### Przykład przerwań:
+1. Załóżmy, że procesor rozkazuje drukarce wydrukowanie określonego dokumentu.
+2. Podczas gdy drukarka drukuje, procesor wykonuje inne zadania.
+3. Kiedy drukarka wykona zadanie (dokument wydrukowany), sygnał przerwania jest 
+wysyłany do procesora z informacją, że zadanie jest wykonane i np. może być ponownie 
+użyta
+
 ---
 
 <br>
 
-## <a name="wdak2"></a>
+## <a name="wdak3"></a>
 
 ### **3. Główne cechy architektury komputerów von Neumana.**
 
 <br>
 
-- **dane i rozkazy** przechowywane są **w tej samej pamięci**, umożliwiającej zapis i odczyt,
+- **dane i rozkazy** przechowywane są **w tej samej pamięci (dokładniej - w pamięci operacyjnej)**, umożliwiającej zapis i odczyt,
 - zawartość tej pamięci jest adresowana przez wskazanie miejsca, bez względu na rodzaj danych,
 - wykonywanie rozkazów następuje **w sposób szeregowy**, czyli **rozkaz po rozkazie**, z wyjątkiem określonych szczególnych przypadków
 
