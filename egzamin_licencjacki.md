@@ -1776,7 +1776,9 @@ int main() {
 	printf("%d\n", *ptr);
 }
 
-/* mimo, że zmienna "a" po wyjściu z bloku już nie istnieje, to wcześniejsze zapisanie adresu pamięci, która przechowywał wartość zmiennej "a" umożliwia nam uzyskanie tej wartości poza blokiem */
+/* mimo, że zmienna "a" po wyjściu z bloku już nie istnieje, to
+wcześniejsze zapisanie adresu pamięci, która przechowywał wartość zmiennej "a"
+umożliwia nam uzyskanie tej wartości poza blokiem */
 ```
 
 <br>
@@ -1805,7 +1807,9 @@ która już nie istnieje (natomiast sama pamięć, która przechowywała zmienn�
 
 - oznacza, że definicja takiej zmiennej znajduje się w innej jednostce translacyjnej,
 
-- samo skompilowanie pliku ze zmienną `extern` jest poprawne, nastomiast jeśli podczas etapu linkowania nie zostanie znaleziona definicja danej zmiennej to dostaniemy błąd
+- samo skompilowanie pliku ze zmienną `extern` jest poprawne, nastomiast jeśli podczas etapu linkowania nie zostanie znaleziona definicja danej zmiennej to dostaniemy błąd,
+
+- nie można jednocześnie użyć słowa `extern` i definicji **zmiennej lokalnej** (czyli `extern int a = 10` spowoduje błąd)
 
 <br>
 
@@ -1813,11 +1817,12 @@ która już nie istnieje (natomiast sama pamięć, która przechowywała zmienn�
 
 ```c
 // plik1.c
-
 #include <stdio.h>
 
+extern int globalna = 10; 	// ok, zadziała, ale pojawią się ostrzeżenia
+
 int main() {
-	// extern int a = 10 --> błąd
+	// extern int lokalna = 10 --> błąd, nie można tak robić lokalnie
 	extern int a;
 	printf("%d\n", a);
 }
@@ -1842,7 +1847,6 @@ gcc plik1.c plik2.c -o plik.exe // poprawne działanie
 
 ```c
 // plik1.c
-
 #include <plik3.h>
 
 int main() {
@@ -1858,7 +1862,6 @@ int a = 10;
 
 ```c
 // plik3.h
-
 #include <stdio.h>
 
 void fun1() {
@@ -1913,7 +1916,6 @@ gcc plik1.c plik2.c plik3.h -o plik.exe
 
 ```c
 //main.cpp
-
 #include <stdio.h>
 
 void print() {
