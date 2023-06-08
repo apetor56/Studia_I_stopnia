@@ -940,7 +940,7 @@ Zamiast dodawać po wierszach możemy napierw dodać wartości w kolumnach:
 $$
 \large
 \begin{gather*}
-	\sum_{i=1}^{n}\sum_{j=1}^{i}{1 \over j} = \sum_{j=1}^{i}{1 \over j}(n + 1 - j) = \sum_{j=1}^{i}({n + 1 \over j} - 1) = \sum_{j=1}^{i}{n + 1 \over j} - i = (n + 1)H_i - i
+	\sum_{i=1}^{n}\sum_{j=1}^{i}{1 \over j} = \sum_{j=1}^{n}{1 \over j}(n + 1 - j) = \sum_{j=1}^{n}({n + 1 \over j} - 1) = \sum_{j=1}^{n}{n + 1 \over j} - n = (n + 1)H_i - n
 \end{gather*}
 $$
 
