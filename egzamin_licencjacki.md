@@ -55,6 +55,11 @@
 [2. Co oznacza, ze algorytm jest częściowo poprawny, ma własność STOPu oraz kiedy mówimy, że algorytm jest całkowicie poprawny?](#pi2) <br>
 [3. Porównaj język maszynowy, język symboliczny i języki programowania wysokiego poziomu. Dlaczego mamy tak wiele języków programowania i co je różni?](#pi3) <br>
 
+### **Język C**
+[1. Operacje na wskaźnikach w języku C.](#c1) <br>
+[2. Podstawowe klasy pamięci zmiennych w C.](#c2) <br>
+[3. Kwalifikator "static".](#c3) <br>
+
 ---
 
 <br>
@@ -1684,3 +1689,246 @@ Jeśli algorytm zwraca poprawne wyniki, a nie posiada właności stopu, to mówi
 Mamy wiele języków programowania ze względu na różne wymagania i potrzeby programistów. Niektóre języki są bardziej odpowiednie do pisania systemów operacyjnych i aplikacji niskopoziomowych, podczas gdy inne są bardziej odpowiednie do pisania aplikacji internetowych i mobilnych. Różnice między językami obejmują składnię, semantykę, możliwości i wydajność. Właściwy wybór języka programowania zależy od wielu czynników, takich jak cel programu, doświadczenie programisty i preferencje techniczne.
 
 ---
+
+<br>
+
+## <a name="c1"></a>
+
+### **1. Operacje na wskaźnikach w języku C.**
+
+<br>
+
+**Wskaźnik**: zmienna całkowitoliczbowa, która przechowuje adres pamięci innej zmiennej. <br>
+
+**Operacje na wskaźnikach**:
+- wskaźnik deklarujemy dając znak `*` przy nazwie zmiennej, np. `int *ptr` (uwaga: `*` jest powiązany z **nazwą**, a nie **typem zmiennej**, tzn. w przypadku `int a, *b, *c, d` zmienne `a, d` są typu `int`, natomiast `b, c` są wskaźnikami typu `int*`),
+- operatory przypisania adresu `&` oraz wyłuskania wartości `*`, na którą wskazuje wskaźnik (przykład poniżej),
+- możliwość odejmowania dwóch wskaźników od siebie,
+- możliwe operatory porównania wskaźników, inkrementacji oraz dekrementacji,
+- możliwość przesunięcia się w tablicy na inny element poprzez dodanie liczby całkowitej do wskaźnika (przykład poniżej: `last`)
+
+<br>
+
+```c
+/* przypisanie adresu innej zmiennej */
+int a = 10;
+int *ptr = &a;
+
+/* odwołanie się do wartości, na którą wskazuje ptr */
+int b = *ptr;
+
+/* operacje na tablicach */
+int tab[] = {1, 2, 3, 4, 5};
+int *first = tab;				// wskaźnik na pierwszy element w tab
+int *last = tab + 5;			// wskaźnik na ostatni element w tab
+
+for(int *it = first; it != last; it++) {
+	printf("%d ", *it);
+}
+
+/* obliczenie rozmiaru tablicy, gdy mamy first i last */
+int size = last - first;
+```
+
+Możemy również przekazać tablicę to funkcji za pomocą wskaźników:
+
+```c
+void print_reverse(int *tab, int size) {
+	for(int *it = tab + size - 1; it >= tab; it--) {
+		printf("%d ", *it);
+	}
+	printf("\n");
+}
+```
+
+---
+
+<br>
+
+## <a name="c2"></a>
+
+### **2. Podstawowe klasy pamięci zmiennych w C.**
+
+<br>
+
+### `auto`
+
+- **domyślny** sposób przechowywania zmiennych zadeklarowanych wewnątrz funkcji/bloku. Dostęp do nich można uzyskać tylko w obrębie ich deklaracji, czyli w obrębie bloku wyznaczonego przez nawiasy `{}`.
+
+- w blokach **zagnieżdżonych** można odwoływać się do zmiennych zadeklarowanych w bloku **nadrzędnym**,
+
+- można uzyskać wartość zmiennej poza blokiem odwołując się do adresu pamięci, do którego zmienna była przypisana,
+
+- nie ma domyślnej wartości, są to zazwyczaj jakieś śmieci z pamięci
+
+
+Poniższy kod zadziała:
+```c
+int *ptr = NULL;
+
+void fun() {
+	int a = 10;
+	ptr = &a;
+}
+
+int main() {
+	fun();
+	printf("%d\n", *ptr);
+}
+
+/* mimo, że zmienna "a" po wyjściu z bloku już nie istnieje, to wcześniejsze zapisanie adresu pamięci, która przechowywał wartość zmiennej "a" umożliwia nam uzyskanie tej wartości poza blokiem */
+```
+
+<br>
+
+Natomiast ten nie zadziała (dostaniemy `Segmentation fault`):
+
+```c
+int *fun() {
+	int a = 10;
+	return &a;
+}
+
+int main() {
+	printf("%d\n", *fun());
+}
+
+/* nie zadziała, ponieważ tutaj próbujemy odwołać się do adresu zmiennej,
+która już nie istnieje (natomiast sama pamięć, która przechowywała zmienną oczywiście nadal istnieje) */
+```
+
+<br>
+
+### `extern`
+
+- poprzedzenie słowem `extern` zmiennych, funkcji czy tablic oznacza ich **deklarację**, a nie **definicję** (czyli nie mają rezerwowanej pamięci),
+
+- oznacza, że definicja takiej zmiennej znajduje się w innej jednostce translacyjnej,
+
+- samo skompilowanie pliku ze zmienną `extern` jest poprawne, nastomiast jeśli podczas etapu linkowania nie zostanie znaleziona definicja danej zmiennej to dostaniemy błąd
+
+<br>
+
+<ins>Przykład 1</ins>
+
+```c
+// plik1.c
+
+#include <stdio.h>
+
+int main() {
+	// extern int a = 10 --> błąd
+	extern int a;
+	printf("%d\n", a);
+}
+```
+
+```c
+// plik2.c
+int a = 100;
+```
+
+```bash
+gcc -c plik1.c -o plik1.o // ok, tutaj jeszcze nie szukamy definicji zmiennej
+
+gcc plik1.c -o plik.exe // błąd - linker nie znajduje definicji zmiennej
+
+gcc plik1.c plik2.c -o plik.exe // poprawne działanie
+./plik.exe
+100
+```
+
+<ins>Przykład 2</ins>
+
+```c
+// plik1.c
+
+#include <plik3.h>
+
+int main() {
+	fun1();
+	fun2();
+}
+```
+
+```c
+// plik2.c
+int a = 10;
+```
+
+```c
+// plik3.h
+
+#include <stdio.h>
+
+void fun1() {
+	extern int a;
+	printf("%d\n", a);
+	a = 100;
+	printf("%d\n", a);
+}
+
+void fun2() {
+	extern int a;
+	printf("%d\n", a);
+}
+```
+```bash
+gcc plik1.c plik2.c plik3.h -o plik.exe
+./plik.exe
+10
+100
+100
+```
+
+<br>
+
+### `register`
+- działa analogicznie do `auto`, tylko jest wskazówką dla kompilatora, że jeśli jest taka możliwość, to zmienna będzie przetrzymywana w **rejestrze procesora**, zamiast w pamięci,
+- dobrze zbudowane kompilatory same powinny dedukować, kiedy dać zmienną do pamięci, a kiedy do rejestru,
+- efektywniejsze jest trzymanie zmiennej w rejestrze niż w pamięci RAM (z reguły i tak trzeba przenieść zmienną z pamięci RAM do rejestru, żeby zrobić na niej operacje, więc jak mamy ją od początku w rejestrze, to procesor nie musi tracić czasu na zbędne przenoszenie)
+
+<br>
+
+### `static` (poniżej)
+
+---
+
+<br>
+
+## <a name="c3"></a>
+
+### **3. Kwalifikator "static".**
+
+### `static`
+- definicja następuje **tylko raz**,
+  
+- istnieje aż do końca programu, a nie tylko w zdefiniowanym bloku/funkcji,
+
+- zmienne i funkcje `static` są widoczne tylko w pliku, w którym zostały zdefiniowane,
+
+- domyślna wartość zmiennej static to `0`
+
+<ins>Przykład</ins>
+
+```c
+//main.cpp
+
+#include <stdio.h>
+
+void print() {
+	static int a;
+	printf("%d ", ++a);
+}
+
+int main() {
+	for(int i = 0; i < 5; i++) {
+		print();
+	}
+}
+```
+```
+gcc main.c -o main.exe
+./main.exe
+1 2 3 4 5
+```
