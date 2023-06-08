@@ -60,6 +60,11 @@
 [2. Podstawowe klasy pamięci zmiennych w C.](#c2) <br>
 [3. Kwalifikator "static".](#c3) <br>
 
+### **Logika i teoria mnogości**
+[1. Relacje równoważności i klasy abstrakcji.](#logika1) <br>
+[2. Prawa rozkładu kwantyfikatorów względem alternatywy i koniunkcji.](#logika2)<br>
+[3. Własności obrazu i przeciwobrazu sumy i przecięcia zbiorów.](#logika3) <br>
+
 ---
 
 <br>
@@ -1593,7 +1598,7 @@ void rozmien(int kwota) {
 }
 ```
 
-### Programowanie zachłanne
+### Programowanie dynamiczne
 Polega na rozwiązywaniu i zapamiętywaniu podproblemów. Wyniki rozwiązań zapisuje się w tabeli, dzięki czemu w przypadku natrafienia na ten sam problem możemy skorzystać ze wcześniej obliczonego wyniku.
 
 ```c++
@@ -1934,3 +1939,103 @@ gcc main.c -o main.exe
 ./main.exe
 1 2 3 4 5
 ```
+
+---
+
+<br>
+
+## <a name="logika1"></a>
+
+### **1. Relacje równoważności i klasy abstrakcji.**
+
+<br>
+
+**Relacja**: relacją w iloczynie kartezjańskim $X \times Y$ nazywamy każdy podzbiór tego iloczynu. Jeśli element $x$ jest w relacji $R$ z elementem $y$ oznaczamy to jako $xRy$.
+
+### **Relacja zwrotna:**
+
+$\forall_{x\in X} \space xRx$ - każdy element zbioru $X$ jest w relacji sam ze sobą.
+
+Przykład: <br>
+$X = \N, \space R=\lbrace (x,y) : x|y \rbrace$
+
+Relacja $R$ jest zwrotna, ponieważ każda liczba naturalna jest swoim dzielnikiem.
+
+<br>
+
+### **Relacja symetryczna:**
+$\forall_{x,y \in X} \space xRy \implies yRx$ - z faktu, że $x$ jest w relacji $R$ z $y$ wynika, że $y$ jest w relacji $R$ z $x$.
+
+Przykład: <br>
+$X$ - zbiór rodzeństwa, $R = \lbrace (x,y): x \space jest \space bratem/siostrą \space y \rbrace$
+
+<br>
+
+### **Relacja przechodnia:**
+$\forall_{x, y, z \in X} \space xRy \space \wedge yRz \implies xRz$ - jeśli $x$ jest w relacji z $y$ i $y$ jest w relacji z $z$, to $x$ jest w relacji $R$ z $z$.
+
+Przykład: <br>
+$X = \N, R = \lbrace (x,y): x < y \rbrace$
+
+Jeśli $a$ jest mniejsze od $b$ oraz $b$ jest mniejsze od $c$ to również $a$ jest mniejsze od $c$.
+
+<br>
+
+### Mówimy, że relacja jest **relacją równoważności**, gdy jednocześnie jest:
+- **zwrotna**,
+  
+- **symetryczna**,
+  
+- **przechodnia**
+
+Często oznaczamy ją jako $\sim$. Relacją równoważności jest np. relacja równości lub kongruencja modulo 3.
+
+### **Klasy abstrakcji**
+
+Każda relacja równoważności $R$ wyznacza podział zbioru $X$ (w którym jest określona) na rozłączne podzbiory, takie że:
+- każde dla elementy należące do **tego samego** podzbioru **są ze sobą w relacji**,
+- żadne dla elementy należące do **różnych** podzbiorów **nie są ze sobą w relacji**
+
+$[x] = \lbrace y \in X: y \sim x \rbrace$
+
+$1. \space x \in [x]$ <br>
+$2. \space [x_1]=[x_2] \Leftrightarrow x_1 \sim x_2$ <br>
+$3. \space [x_1] \neq [x_2] \Leftrightarrow [x_1] \cap [x_2] = \emptyset$
+
+Dowolny element klasy abstrakcji nazywa się **reprezentantem**. <br>
+Zbiór klas abstrakcji nazywa się **przestrzenią ilorazową**.
+<br>
+
+<ins>Przykład:</ins>
+
+W zbiorze $A = \lbrace 1, 2, 3, 4, 5, 6, 7 \rbrace$ $x$ jest w relacji $\sim$ z $y$ wtedy i tylko wtedy, gdy $x$ i $y$ dają taką samą resztę z dzielenia przez 3 (kongruencja modulo 3). Jest to relacja równoważności. Jej klasy abstrakcji to:
+
+- $[1] = [4] = [7] = \lbrace 1, 4, 7 \rbrace$,
+- $[2] = [5] = \lbrace 2, 5 \rbrace$,
+- $[3] = [6] = \lbrace 3, 6 \rbrace$
+
+Przestrzeń ilorazowa: $A/_\sim = \lbrace \lbrace 1, 4, 7 \rbrace, \lbrace 2, 5 \rbrace, \lbrace 3, 6 \rbrace \rbrace$.
+
+---
+
+<br>
+
+## <a name="logika2"></a>
+
+### **2. Prawa rozkładu kwantyfikatorów względem alternatywy i koniunkcji.**
+
+<br>
+
+$$
+	\Large
+	\exists x (\phi (x) \vee \psi(x)) \Leftrightarrow \exists x \phi (x) \vee \exists x \psi (x) \\
+	\forall x (\phi (x) \wedge \psi(x)) \Leftrightarrow \forall x \phi (x) \wedge \forall x \psi  (x)
+$$
+
+---
+
+<br>
+
+## <a name="logika3"></a>
+
+### **3. Własności obrazu i przeciwobrazu sumy i przecięcia zbiorów.**
