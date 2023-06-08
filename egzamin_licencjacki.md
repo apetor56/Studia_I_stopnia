@@ -935,7 +935,7 @@ $$
 \end{gather*}
 $$
 
-Zamiast dodawać po wierszach możemy napierw dodać wartości w kolumnach:
+Zamiast dodawać po wierszach możemy napierw dodać wartości w kolumnach (czyli najpierw wszytkie jedynki, potem wszytkie 1/2 itd.):
 
 $$
 \large
