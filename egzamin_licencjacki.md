@@ -961,7 +961,7 @@ $$
 \large
 \begin{gather*}
 	S_n = \sum_{i = 0}^{n} ax^i \\
-	{\color{red}\sum_{i = 0}^{n} ax^i} + {\color{blue}ax^{n + 1}} = a + \sum_{i=0}^{n} ax^{i + 1} = {\color{purple} a} + {\color{green}x\sum_{i=1}^{n} ax^{i}} \\
+	{\color{red}\sum_{i = 0}^{n} ax^i} + {\color{blue}ax^{n + 1}} = a + \sum_{i=0}^{n} ax^{i + 1} = {\color{purple} a} + {\color{green}x\sum_{i=0}^{n} ax^{i}} \\
 	{\color{red}\sum_{i = 0}^{n} ax^i} - {\color{green}x\sum_{i=1}^{n} ax^{i}} = {\color{purple}a} - {\color{blue}ax^{n + 1}} \\
 	(1 - x)\sum_{i = 0}^{n} ax^i = a(1 - x^{n + 1}) \\
 	\sum_{i = 0}^{n} ax^i = a {{1 - x^{n + 1}} \over {1 - x}}
@@ -1957,7 +1957,7 @@ gcc main.c -o main.exe
 $\forall_{x\in X} \space xRx$ - każdy element zbioru $X$ jest w relacji sam ze sobą.
 
 Przykład: <br>
-$X = \N, \space R=\lbrace (x,y) : x|y \rbrace$
+$X = \mathbb{N}, \space R=\lbrace (x,y) : x|y \rbrace$
 
 Relacja $R$ jest zwrotna, ponieważ każda liczba naturalna jest swoim dzielnikiem.
 
@@ -1989,6 +1989,8 @@ Jeśli $a$ jest mniejsze od $b$ oraz $b$ jest mniejsze od $c$ to również $a$ j
 - **przechodnia**
 
 Często oznaczamy ją jako $\sim$. Relacją równoważności jest np. relacja równości lub kongruencja modulo 3.
+
+<br>
 
 ### **Klasy abstrakcji**
 
@@ -2027,9 +2029,11 @@ Przestrzeń ilorazowa: $A/_\sim = \lbrace \lbrace 1, 4, 7 \rbrace, \lbrace 2, 5 
 <br>
 
 $$
-	\Large
+\Large
+\begin{gather*}
 	\exists x (\phi (x) \vee \psi(x)) \Leftrightarrow \exists x \phi (x) \vee \exists x \psi (x) \\
 	\forall x (\phi (x) \wedge \psi(x)) \Leftrightarrow \forall x \phi (x) \wedge \forall x \psi  (x)
+\end{gather*}
 $$
 
 ---
@@ -2039,3 +2043,42 @@ $$
 ## <a name="logika3"></a>
 
 ### **3. Własności obrazu i przeciwobrazu sumy i przecięcia zbiorów.**
+
+<br>
+
+**Obraz zbioru:** niech $f: X \rightarrow Y$ i niech $A$ będzie podzbiorem **dziedziny** ($A \subset X$). Obrazem zbioru $A$ w funkcji $f$ nazywamy **zbiór wartości tej funkcji** dla wszystkich elementów ze zbioru $A$. Taki obraz oznaczamy jako $f[A]$.
+
+$f[A] = \lbrace y \in Y : \exists_{a \in A} \space f(a) = y \rbrace$
+
+<ins>Przykład:</ins>
+
+$f: \mathbb{N} \rightarrow \mathbb{N}$ <br>
+$f(x) = x + 5$ <br>
+$A = \lbrace 0, 1, 2, 3 \rbrace$ <br>
+$f[A] = \lbrace 5, 6, 7, 8 \rbrace$
+
+<br>
+
+**Przeciwobraz zbioru:** niech $f: X \rightarrow Y$ i niech $B$ będzie podzbiorem **przeciwdziedziny** ($B \subset Y$). Przeciwobrazem zbioru $B$ nazywamy **zbiór argumetów tej funkcji**, dla których funkcja przyjmuje wartości ze zbioru $B$. Oznaczamy to jako $f^-1[B]$
+
+$f^-1[B] = \lbrace x \in X : \exists_{b \in B} \space f(x) = b \rbrace$
+
+<ins>Przykład:</ins>
+
+$f: \mathbb{N} \rightarrow \mathbb{N}$ <br>
+$f(x) = x + 5$ <br>
+$B = \lbrace 5, 6, 7 \rbrace$ <br>
+$f^-1[B] = \lbrace 0, 1, 2 \rbrace$
+
+<br>
+// Sprawdzić
+
+**Dla obrazów:**
+- $f[\cup A_i] = \cup f[A_i]$ - obraz sumy jest sumą obrazów,
+- $f[\cap A_i] \subseteq \cap f[A_i]$ - obraz przecięcia jest zawarty w przecięciu obrazów
+
+<br>
+
+**Dla przeciwobrazów:**
+- $f^-1[\cup B_i] = \cup f^-1[B_i]$ - przeciwobraz sumy jest sumą przeciwobrazów,
+- $f^-1[\cap B_i] = \cap f^-1[B_i]$ - przeciwobraz przecięcia jest przecięciem przeciwobrazów
