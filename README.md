@@ -1,4 +1,4 @@
-# Studia_I_stopnia
+# Studia I stopnia
 
 ## Semestr II
 [Systemy operacyjne](https://github.com/apetor56/Systemy-operacyjne.git)
