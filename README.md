@@ -19,3 +19,6 @@
 
 ## Semestr VI
 [Systemy czasu rzeczywistego](https://github.com/apetor56/Systemy_czasu_rzeczywistego.git)
+
+## Egzamin licencjacki
+[Opacowanie (niedokończone)](https://github.com/apetor56/egzamin_licencjacki.git)
