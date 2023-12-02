@@ -1,0 +1,12 @@
+#!/usr/bin/gnuplot
+set terminal wxt size 1366, 768
+set rmargin 5
+
+set yl "Comparasion"
+set xl "Size of vector"
+
+f(x) = x * (x - 1) / 2
+plot [0 : 75000] f(x) t "expected" lc 0 w l, \
+    "complexity.txt" u 1 : 2 t "computed" lc 1 w l
+
+pause -1

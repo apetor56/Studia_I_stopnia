@@ -1,0 +1,401 @@
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(268, 347, 447, 4, 100)
+Najbliższy dystans: 15402
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(150, 174, 225, 67, 459)
+Najbliższy dystans: 26587
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(49, 489, 252, 499, 141)
+Najbliższy dystans: 20849
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(50, 147, 428, 17, 252)
+Najbliższy dystans: 32033
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(157, 127, 162, 72, 402)
+Najbliższy dystans: 19709
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(355, 496, 303, 43, 451)
+Najbliższy dystans: 28070
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(2, 164, 298, 302, 20)
+Najbliższy dystans: 14685
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(251, 304, 46, 476, 371)
+Najbliższy dystans: 18637
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(5, 25, 360, 110, 377)
+Najbliższy dystans: 35913
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(353, 160, 376, 134, 177)
+Najbliższy dystans: 16678
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(128, 143, 157, 142, 216)
+Najbliższy dystans: 18087
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(59, 350, 212, 362, 245)
+Najbliższy dystans: 17698
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(163, 217, 409, 314, 371)
+Najbliższy dystans: 12162
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(282, 65, 175, 328, 393)
+Najbliższy dystans: 17262
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(398, 186, 270, 111, 296)
+Najbliższy dystans: 8986
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(499, 464, 308, 375, 450)
+Najbliższy dystans: 28400
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(486, 356, 94, 495, 498)
+Najbliższy dystans: 49558
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(162, 54, 200, 226, 268)
+Najbliższy dystans: 25899
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(446, 241, 337, 207, 55)
+Najbliższy dystans: 27538
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(60, 489, 472, 87, 318)
+Najbliższy dystans: 33397
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(365, 486, 4, 488, 97)
+Najbliższy dystans: 21588
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(152, 487, 61, 460, 363)
+Najbliższy dystans: 40659
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(364, 298, 71, 458, 293)
+Najbliższy dystans: 20570
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(69, 120, 199, 270, 198)
+Najbliższy dystans: 24411
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(468, 68, 439, 157, 275)
+Najbliższy dystans: 14085
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(495, 218, 265, 319, 305)
+Najbliższy dystans: 28114
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(435, 37, 291, 291, 25)
+Najbliższy dystans: 55663
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(388, 443, 364, 302, 403)
+Najbliższy dystans: 12216
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(227, 18, 202, 298, 476)
+Najbliższy dystans: 13032
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(347, 220, 448, 47, 342)
+Najbliższy dystans: 19750
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(146, 367, 410, 85, 24)
+Najbliższy dystans: 35661
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(185, 432, 94, 302, 252)
+Najbliższy dystans: 15385
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(400, 237, 289, 43, 28)
+Najbliższy dystans: 23391
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(166, 284, 323, 30, 86)
+Najbliższy dystans: 32634
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(79, 110, 104, 133, 260)
+Najbliższy dystans: 21143
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(432, 480, 480, 232, 379)
+Najbliższy dystans: 12361
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(174, 230, 246, 84, 167)
+Najbliższy dystans: 30436
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(123, 122, 100, 217, 424)
+Najbliższy dystans: 12590
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(204, 117, 14, 345, 161)
+Najbliższy dystans: 10411
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(394, 11, 445, 218, 41)
+Najbliższy dystans: 28051
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(383, 297, 3, 339, 282)
+Najbliższy dystans: 16129
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(264, 123, 262, 96, 355)
+Najbliższy dystans: 21238
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(142, 271, 437, 240, 207)
+Najbliższy dystans: 18456
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(104, 363, 181, 56, 81)
+Najbliższy dystans: 28851
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(106, 260, 50, 472, 105)
+Najbliższy dystans: 26602
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(63, 366, 468, 360, 436)
+Najbliższy dystans: 25384
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(362, 95, 85, 365, 286)
+Najbliższy dystans: 12158
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(367, 481, 409, 482, 78)
+Najbliższy dystans: 55746
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(116, 476, 201, 53, 216)
+Najbliższy dystans: 23182
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(260, 10, 432, 442, 66)
+Najbliższy dystans: 22014
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(365, 48, 327, 267, 372)
+Najbliższy dystans: 44385
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(284, 331, 90, 105, 43)
+Najbliższy dystans: 39480
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(27, 467, 139, 464, 184)
+Najbliższy dystans: 24769
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(277, 184, 166, 187, 166)
+Najbliższy dystans: 20441
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(96, 155, 494, 149, 209)
+Najbliższy dystans: 8881
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(62, 409, 219, 494, 351)
+Najbliższy dystans: 36061
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(137, 359, 251, 464, 127)
+Najbliższy dystans: 13217
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(123, 101, 310, 214, 206)
+Najbliższy dystans: 16355
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(205, 93, 25, 196, 409)
+Najbliższy dystans: 18439
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(61, 474, 93, 79, 161)
+Najbliższy dystans: 22208
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(111, 175, 168, 105, 324)
+Najbliższy dystans: 14252
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(377, 168, 86, 448, 14)
+Najbliższy dystans: 32350
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(437, 438, 226, 189, 402)
+Najbliższy dystans: 11870
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(205, 312, 355, 15, 378)
+Najbliższy dystans: 24434
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(413, 72, 471, 290, 269)
+Najbliższy dystans: 19808
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(381, 352, 243, 326, 283)
+Najbliższy dystans: 36775
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(404, 438, 459, 424, 395)
+Najbliższy dystans: 13723
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(135, 302, 63, 221, 102)
+Najbliższy dystans: 21727
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(430, 11, 40, 156, 200)
+Najbliższy dystans: 38256
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(295, 361, 12, 2, 228)
+Najbliższy dystans: 42802
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(391, 268, 300, 214, 58)
+Najbliższy dystans: 22951
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(69, 95, 262, 312, 274)
+Najbliższy dystans: 15155
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(46, 68, 212, 357, 493)
+Najbliższy dystans: 25439
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(107, 344, 147, 23, 418)
+Najbliższy dystans: 42883
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(101, 453, 429, 494, 109)
+Najbliższy dystans: 33725
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(129, 141, 470, 493, 143)
+Najbliższy dystans: 30302
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(198, 236, 411, 498, 303)
+Najbliższy dystans: 17944
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(322, 68, 250, 436, 232)
+Najbliższy dystans: 30006
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(24, 482, 301, 236, 191)
+Najbliższy dystans: 27748
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(294, 196, 36, 293, 219)
+Najbliższy dystans: 16796
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(454, 394, 24, 235, 388)
+Najbliższy dystans: 16122
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(133, 216, 29, 455, 61)
+Najbliższy dystans: 17871
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(25, 5, 150, 288, 355)
+Najbliższy dystans: 27503
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(453, 110, 275, 203, 47)
+Najbliższy dystans: 43460
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(8, 80, 381, 161, 168)
+Najbliższy dystans: 37891
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(73, 307, 364, 461, 100)
+Najbliższy dystans: 22507
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(435, 267, 494, 459, 2)
+Najbliższy dystans: 27624
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(235, 444, 218, 116, 251)
+Najbliższy dystans: 44816
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(131, 141, 108, 281, 430)
+Najbliższy dystans: 11507
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(464, 234, 392, 239, 290)
+Najbliższy dystans: 9385
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(291, 99, 370, 25, 260)
+Najbliższy dystans: 34627
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(390, 98, 67, 255, 59)
+Najbliższy dystans: 28042
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(167, 42, 178, 14, 354)
+Najbliższy dystans: 24437
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(180, 101, 150, 250, 217)
+Najbliższy dystans: 22975
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(402, 381, 211, 10, 163)
+Najbliższy dystans: 22411
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(493, 326, 249, 237, 66)
+Najbliższy dystans: 28343
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(391, 29, 165, 113, 54)
+Najbliższy dystans: 54505
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(426, 4, 4, 345, 111)
+Najbliższy dystans: 20412
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(415, 13, 153, 93, 379)
+Najbliższy dystans: 51243
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
+(7, 125, 480, 158, 375)
+Najbliższy dystans: 33541
+
+Proszę wprowadzić współrzędne punktu (5-wymiarowy): 
