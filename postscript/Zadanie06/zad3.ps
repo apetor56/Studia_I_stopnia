@@ -1,0 +1,33 @@
+200 500 translate
+
+/five_pointed_star {
+    /len exch def
+    /mod exch def
+    gsave
+        30 rotate
+        5 {
+            -144 rotate
+            len 0 rlineto
+        } repeat
+
+        gsave
+            stroke
+        grestore
+
+        mod 1 eq {
+            eofill
+        } {
+            fill
+        } ifelse
+    grestore
+} def
+
+
+0 0 moveto
+% with eofill
+1 200 five_pointed_star
+
+300 0 moveto
+% with fill
+0 200 five_pointed_star
+showpage

@@ -1,0 +1,21 @@
+/deg 0 def
+
+/elipse {
+    gsave
+    deg rotate
+    2 0.5 scale
+    0 0 100 0 360 arc
+    0.5 2 scale         % reskalowanie do stanu x: 1.0 i y: 1.0
+    2 setlinewidth      % by setlinewidth działało tak samo dla
+    stroke              % każdej części elipsy
+    grestore
+    /deg deg 10 add def
+} def
+
+300 500 translate
+
+100 {
+    elipse
+} repeat
+
+showpage

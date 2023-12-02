@@ -1,0 +1,20 @@
+/deg 0 def
+
+/elipse {
+    gsave
+    deg rotate
+    2 0.5 scale
+    0 0 100 0 360 arc
+    stroke
+    grestore
+    2 setlinewidth
+    /deg deg 10 add def
+} def
+
+300 500 translate
+
+100 {
+    elipse
+} repeat
+
+showpage

@@ -1,0 +1,34 @@
+200 500 translate
+0 0 moveto
+
+/height 50 def
+/counter 0 def
+/s 0.75 def
+/a 25 def
+/r 7 def
+
+/motyw {
+    0 0 moveto
+    0 height lineto
+    currentpoint translate
+    stroke
+} def
+
+/fraktal {
+    gsave
+    s s scale
+    motyw
+    counter r lt {
+        /counter counter 1 add def
+        -1 a mul rotate
+        fraktal
+        2 a mul rotate
+        fraktal
+        /counter counter 1 sub def
+    } if
+    grestore
+    stroke
+} def
+
+fraktal
+stroke

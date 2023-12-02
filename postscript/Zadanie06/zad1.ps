@@ -1,0 +1,19 @@
+200 200 translate
+
+/square {
+    /r exch def
+    /a exch def
+
+    newpath 0 r moveto
+    0 a a a r arct
+
+    a a a 0 r arct
+
+    a 0 0 0 r arct
+    
+    0 0 0 a r arct 
+    stroke
+} def
+
+200 30 square
+showpage
