@@ -1,24 +1,24 @@
 # Studia I stopnia
 
 ## Semestr II
-[Systemy operacyjne](https://github.com/apetor56/Systemy-operacyjne.git)
+[Systemy operacyjne](https://github.com/apetor56/Studia_I_stopnia/tree/Systemy_operacyjne)
 
 ## Semestr III
-[Metody numeryczne](https://github.com/apetor56/Metody-numeryczne.git) <br>
-[Język Java](https://github.com/apetor56/Java.git) <br>
-[Algorytmy i struktury danych I](https://github.com/apetor56/Algorytmy-i-struktury-danych-I.git)
+[Metody numeryczne](https://github.com/apetor56/Studia_I_stopnia/tree/Metody_numeryczne) <br>
+[Język Java](https://github.com/apetor56/Studia_I_stopnia/tree/Java) <br>
+[Algorytmy i struktury danych I](https://github.com/apetor56/Studia_I_stopnia/tree/ASD1)
 
 ## Semestr IV
-[Grafika komputerowa](https://github.com/apetor56/Grafika-komputerowa.git) <br>
-[Algorytmy i struktury danych II](https://github.com/apetor56/Algorytmy-i-struktury-danych-II.git)
+[Grafika komputerowa](https://github.com/apetor56/Studia_I_stopnia/tree/Grafika_komputerowa) <br>
+[Algorytmy i struktury danych II](https://github.com/apetor56/Studia_I_stopnia/tree/ASD2)
 
 ## Semestr V
-[Techniki WWW](https://github.com/apetor56/Techniki-WWW.git) <br>
-[Wprowadzenie do analityki danych](https://github.com/apetor56/Introduction-to-Data-Science.git) <br>
-[Język Python](https://github.com/apetor56/Python.git)
+[Techniki WWW](https://github.com/apetor56/Studia_I_stopnia/tree/Techniki_WWW) <br>
+[Wprowadzenie do analityki danych](https://github.com/apetor56/Studia_I_stopnia/tree/Analityka_danych) <br>
+[Język Python](https://github.com/apetor56/Studia_I_stopnia/tree/Python)
 
 ## Semestr VI
-[Systemy czasu rzeczywistego](https://github.com/apetor56/Systemy_czasu_rzeczywistego.git)
+[Systemy czasu rzeczywistego](https://github.com/apetor56/Studia_I_stopnia/tree/RTS)
 
 ## Egzamin licencjacki
-[Opacowanie (niedokończone)](https://github.com/apetor56/egzamin_licencjacki.git)
+[Opacowanie (niedokończone)](https://github.com/apetor56/Studia_I_stopnia/tree/Egzamin)
